@@ -1,28 +1,20 @@
 {
-	"name": "wporg-themes-2022",
+	"name": "wporg-theme-directory",
 	"version": "1.0.0",
 	"description": "The codebase and development environment for the wordpress.org theme directory.",
 	"author": "WordPress.org",
 	"license": "GPL-2.0-or-later",
 	"private": true,
 	"devDependencies": {
-		"@wordpress/env": "4.9.0",
-		"@wordpress/scripts": "23.5.0",
-		"backstopjs": "6.1.1",
-		"lighthouse-ci": "1.13.1"
+		"@wordpress/env": "9.7.0",
+		"@wordpress/scripts": "27.6.0"
 	},
 	"scripts": {
 		"setup:tools": "yarn && composer install && TEXTDOMAIN=wporg-themes composer exec update-configs",
-		"setup:wp": "wp-env run cli \"bash env/setup.sh\"",
+		"setup:wp": "wp-env run cli bash env/setup.sh",
 		"setup:refresh": "./env/refresh.sh",
 		"update:tools": "composer update && TEXTDOMAIN=wporg composer exec update-configs",
-		"wp-env": "wp-env",
-		"backstop:reference": "npm exec backstop reference",
-		"backstop:test": "npm exec backstop test",
-		"lighthouse": "lighthouse-ci http://localhost:8888/ --accessibility=100 --best-practices=100 --seo=100",
-		"lighthouse:desktop": "lighthouse http://localhost:8888/ --view --preset=desktop --output-path=lighthouse.html",
-		"lighthouse:mobile": "lighthouse http://localhost:8888/ --view --screenEmulation.mobile --output-path=lighthouse.html",
-		"build:patterns": "./env/build-patterns.sh"
+		"wp-env": "wp-env"
 	},
 	"workspaces": [
 		"source/wp-content/themes/wporg-themes-2022"
