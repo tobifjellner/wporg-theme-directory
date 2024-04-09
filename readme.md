@@ -44,7 +44,7 @@ This is as-yet incomplete, a starting point.
 		"themes": [
 			"./source/wp-content/themes/wporg",
 			"./source/wp-content/themes/wporg-themes",
-			"./source/wp-content/themes/wporg-themes-2022"
+			"./source/wp-content/themes/wporg-themes-2024"
 			"../wporg-parent-2021/source/wp-content/themes/wporg-parent-2021"
 		]
 	}
@@ -69,19 +69,6 @@ These must be run in the project's root folder, _not_ in theme/plugin subfolders
 	```bash
 	yarn wp-env start
 	```
-
-* Build the theme's JavaScript
-
-	```bash
-	yarn workspace wporg-main-2022-theme build
-	```
-
-	or, automatically build on changes:
-
-	```bash
-	yarn workspace wporg-main-2022-theme start
-	```
-
 
 * Refresh local WordPress content with a current copy from the staging site.
 

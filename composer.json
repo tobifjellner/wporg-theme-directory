@@ -1,10 +1,10 @@
 {
-	"name": "wporg/wporg-themes-2022",
+	"name": "wporg/wporg-themes-directory",
 	"description": "",
 	"homepage": "https://wordpress.org",
 	"license": "GPL-2.0-or-later",
 	"support": {
-		"issues": "https://github.com/WordPress/wporg-themes-2022/issues"
+		"issues": "https://github.com/WordPress/wporg-theme-directory/issues"
 	},
 	"config": {
 		"platform": {

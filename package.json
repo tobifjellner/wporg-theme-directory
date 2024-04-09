@@ -17,6 +17,6 @@
 		"wp-env": "wp-env"
 	},
 	"workspaces": [
-		"source/wp-content/themes/wporg-themes-2022"
+		"source/wp-content/themes/wporg-themes-2024"
 	]
 }
