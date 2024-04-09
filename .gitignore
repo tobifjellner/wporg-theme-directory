@@ -6,7 +6,10 @@
 /vendor
 *.map
 wp-cli.yml
+
+# Local build files.
 backstop_data
+lighthouse.html
 
 # Allow local environment overrides.
 .wp-env.override.json
@@ -19,10 +22,10 @@ phpcs.xml.dist
 
 # Ignore everything in source...
 /source/wp-content/*
-/source/wp-content/themes/*
 /source/wp-content/mu-plugins/*
+/source/wp-content/plugins/*
+/source/wp-content/themes/*
 
 # ...except the actual source of this project.
 !/source/wp-content/themes
 !/source/wp-content/themes/wporg-themes-2024
-!/source/wp-content/mu-plugins
