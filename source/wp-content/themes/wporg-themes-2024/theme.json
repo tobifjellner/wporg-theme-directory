@@ -1,5 +1,18 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/theme.json",
 	"version": 2,
-	"settings": {}
+	"settings": {},
+	"styles": {
+		"blocks": {
+			"core/post-title": {
+				"elements": {
+					"link": {
+						"color": {
+							"text": "var(--wp--preset--color--blueberry-1)"
+						}
+					}
+				}
+			}
+		}
+	}
 }

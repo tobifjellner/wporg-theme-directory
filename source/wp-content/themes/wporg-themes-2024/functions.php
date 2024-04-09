@@ -2,6 +2,8 @@
 
 namespace WordPressdotorg\Theme\Theme_Directory_2024;
 
+require_once( __DIR__ . '/inc/block-config.php' );
+
 /**
  * Actions and filters.
  */
