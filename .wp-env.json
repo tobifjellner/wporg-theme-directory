@@ -16,7 +16,8 @@
 		"./source/wp-content/plugins/gutenberg",
 		"./source/wp-content/plugins/jetpack",
 		"./source/wp-content/plugins/theme-directory",
-		"./source/wp-content/plugins/wordpress-importer"
+		"./source/wp-content/plugins/wordpress-importer",
+		"./source/wp-content/plugins/wporg-ratings"
 	],
 	"themes": [
 		"./source/wp-content/themes/wporg",

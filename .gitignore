@@ -27,5 +27,7 @@ phpcs.xml.dist
 /source/wp-content/themes/*
 
 # ...except the actual source of this project.
+!/source/wp-content/plugins
+!/source/wp-content/plugins/wporg-ratings
 !/source/wp-content/themes
 !/source/wp-content/themes/wporg-themes-2024
