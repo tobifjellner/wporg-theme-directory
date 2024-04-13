@@ -36,13 +36,7 @@
 
 	<!-- wp:column {"width":"30%"} -->
 	<div class="wp-block-column" style="flex-basis:30%">
-		<!-- wp:paragraph -->
-		<p>[Community theme]</p>
-		<!-- /wp:paragraph -->
-
-		<!-- wp:paragraph -->
-		<p>This theme is developed and supported by a community.</p>
-		<!-- /wp:paragraph -->
+		<!-- wp:wporg/business-model-notice /-->
 
 		<!-- wp:buttons {"layout":{"type":"flex"}} -->
 		<div class="wp-block-buttons">

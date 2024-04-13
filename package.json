@@ -10,9 +10,11 @@
 		"@wordpress/scripts": "27.6.0"
 	},
 	"scripts": {
+		"build:theme": "yarn workspace wporg-themes-2024 build",
 		"setup:tools": "yarn && composer install && TEXTDOMAIN=wporg-themes composer exec update-configs",
 		"setup:wp": "wp-env run cli bash env/setup.sh",
 		"setup:refresh": "./env/refresh.sh",
+		"start:theme": "yarn workspace wporg-themes-2024 start",
 		"update:tools": "composer update && TEXTDOMAIN=wporg composer exec update-configs",
 		"wp-env": "wp-env"
 	},

@@ -5,6 +5,9 @@ namespace WordPressdotorg\Theme\Theme_Directory_2024;
 require_once( __DIR__ . '/inc/block-bindings.php' );
 require_once( __DIR__ . '/inc/block-config.php' );
 
+// Block files
+require_once( __DIR__ . '/src/business-model-notice/index.php' );
+
 /**
  * Actions and filters.
  */
