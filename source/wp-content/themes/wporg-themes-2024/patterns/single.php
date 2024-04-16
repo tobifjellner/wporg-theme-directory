@@ -50,9 +50,7 @@
 		</div>
 		<!-- /wp:buttons -->
 
-		<!-- wp:paragraph -->
-		<p>[Child theme notice]</p>
-		<!-- /wp:paragraph -->
+		<!-- wp:wporg/child-theme-notice /-->
 
 		<!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"flex","orientation":"vertical"}} -->
 		<div class="wp-block-group">

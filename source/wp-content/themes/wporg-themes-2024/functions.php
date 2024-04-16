@@ -7,6 +7,7 @@ require_once( __DIR__ . '/inc/block-config.php' );
 
 // Block files
 require_once( __DIR__ . '/src/business-model-notice/index.php' );
+require_once( __DIR__ . '/src/child-theme-notice/index.php' );
 
 /**
  * Actions and filters.
