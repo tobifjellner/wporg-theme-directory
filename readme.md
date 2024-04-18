@@ -2,7 +2,7 @@
 
 The codebase and development environment for the WordPress.org Theme Directory.
 
-This is as-yet incomplete, a starting point.
+This is as-yet incomplete, a starting point. Following this will get you partially set up, but you need a `ratings` database table to prevent fatal errors.
 
 ## Development
 
@@ -19,6 +19,13 @@ This is as-yet incomplete, a starting point.
 
 	```bash
 	yarn setup:tools
+	```
+
+1. Add the theme-directory plugin, as this is not installed by composer.
+
+	```bash
+	cd source/wp-content/plugins/
+	svn checkout https://meta.svn.wordpress.org/sites/trunk/wordpress.org/public_html/wp-content/plugins/theme-directory
 	```
 
 1. Start the local environment.
