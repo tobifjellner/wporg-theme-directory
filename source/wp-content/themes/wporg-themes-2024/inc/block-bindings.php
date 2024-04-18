@@ -93,5 +93,51 @@ function get_meta_block_value( $args, $block ) {
 			return esc_url( $theme->preview_url );
 		case 'download-url':
 			return esc_url( $theme->download_link );
+		case 'support-forum-url':
+			return esc_url( '/support/theme/' . $theme->slug );
+		case 'report-url':
+			$report_url = add_query_arg(
+				urlencode_deep(
+					array_filter(
+						array(
+							'rep-theme'   => "https://wordpress.org/themes/{ $theme->slug }/",
+							'rep-subject' => "Reported Theme: { $theme->name }", // Not translated, email subject.
+							'rep-name'    => wp_get_current_user()->user_login,
+						)
+					)
+				),
+				'https://make.wordpress.org/themes/report-theme/'
+			);
+			return esc_url( $report_url );
+		case 'translate-link':
+			return sprintf(
+				'<a href="%s">%s</a></p>',
+				esc_url( "https://translate.wordpress.org/projects/wp-themes/{ $theme->slug }" ),
+				__( 'Translate this theme', 'wporg-themes' )
+			);
+		case 'trac-log-link':
+			return sprintf(
+				'<a href="%s" rel="nofollow">%s</a></p>',
+				esc_url( "https://themes.trac.wordpress.org/log/{ $theme->slug }" ),
+				__( 'Development Log', 'wporg-themes' )
+			);
+		case 'trac-svn-link':
+			return sprintf(
+				'<a href="%s" rel="nofollow">%s</a></p>',
+				esc_url( "https://themes.svn.wordpress.org/{ $theme->slug }" ),
+				__( 'Subversion Repository', 'wporg-themes' )
+			);
+		case 'trac-browse-link':
+			return sprintf(
+				'<a href="%s" rel="nofollow">%s</a></p>',
+				esc_url( "https://themes.trac.wordpress.org/browser/{ $theme->slug }" ),
+				__( 'Browse in Trac', 'wporg-themes' )
+			);
+		case 'trac-tickets-link':
+			return sprintf(
+				'<a href="%s" rel="nofollow">%s</a></p>',
+				esc_url( "themes.trac.wordpress.org/query?keywords=~theme-{ $theme->slug }" ),
+				__( 'Trac Tickets', 'wporg-themes' )
+			);
 	}
 }

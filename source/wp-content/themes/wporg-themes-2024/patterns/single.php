@@ -134,36 +134,60 @@
 		<!-- /wp:paragraph -->
 
 		<!-- wp:heading {"fontSize":"heading-4"} -->
-		<h2 class="wp-block-heading has-heading-4-font-size">Support</h2>
+		<h2 class="wp-block-heading has-heading-4-font-size"><?php esc_html_e( 'Support', 'wporg-themes' ); ?></h2>
+		<!-- /wp:heading -->
+
+		<!-- wp:button {"className":"is-style-outline is-small","metadata":{"bindings":{"url":{"source":"wporg-themes/meta","args":{"key":"support-forum-url"}}}}} -->
+		<div class="wp-block-button is-style-outline is-small"><a class="wp-block-button__link wp-element-button"><?php esc_html_e( 'View support forum', 'wporg-themes' ); ?></a></div>
+		<!-- /wp:button -->
+
+		<!-- wp:heading {"fontSize":"heading-4"} -->
+		<h2 class="wp-block-heading has-heading-4-font-size"><?php esc_html_e( 'Report', 'wporg-themes' ); ?></h2>
 		<!-- /wp:heading -->
 
 		<!-- wp:paragraph -->
-		<p><a href="#">View support forum</a></p>
+		<p><?php esc_html_e( 'Does this theme have major issues?', 'wporg-themes' ); ?></p>
+		<!-- /wp:paragraph -->
+
+		<!-- wp:buttons {"style":{"spacing":{"margin":{"top":"var:preset|spacing|10"}}}} -->
+		<div class="wp-block-buttons" style="margin-top:var(--wp--preset--spacing--10)">
+			<!-- wp:button {"className":"is-style-outline is-small","metadata":{"bindings":{"url":{"source":"wporg-themes/meta","args":{"key":"report-url"}}}}} -->
+			<div class="wp-block-button is-style-outline is-small"><a class="wp-block-button__link wp-element-button"><?php esc_html_e( 'Report this theme', 'wporg-themes' ); ?></a></div>
+			<!-- /wp:button -->
+		</div>
+		<!-- /wp:buttons -->
+
+		<!-- wp:heading {"fontSize":"heading-4"} -->
+		<h2 class="wp-block-heading has-heading-4-font-size"><?php esc_html_e( 'Translations', 'wporg-themes' ); ?></h2>
+		<!-- /wp:heading -->
+
+		<!-- wp:paragraph {"metadata":{"bindings":{"content":{"source":"wporg-themes/meta","args":{"key":"translate-link"}}}}} -->
+		<p>Translate this theme</p>
 		<!-- /wp:paragraph -->
 
 		<!-- wp:heading {"fontSize":"heading-4"} -->
-		<h2 class="wp-block-heading has-heading-4-font-size">Report</h2>
+		<h2 class="wp-block-heading has-heading-4-font-size"><?php esc_html_e( 'Browse the code', 'wporg-themes' ); ?></h2>
 		<!-- /wp:heading -->
 
-		<!-- wp:paragraph -->
-		<p>Does this theme have major issues? <a href="#">Report this theme</a></p>
-		<!-- /wp:paragraph -->
+		<!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"constrained"}} -->
+		<div class="wp-block-group">
+			<!-- wp:paragraph {"metadata":{"bindings":{"content":{"source":"wporg-themes/meta","args":{"key":"trac-log-link"}}}}} -->
+			<p></p>
+			<!-- /wp:paragraph -->
 
-		<!-- wp:heading {"fontSize":"heading-4"} -->
-		<h2 class="wp-block-heading has-heading-4-font-size">Translations</h2>
-		<!-- /wp:heading -->
+			<!-- wp:paragraph {"metadata":{"bindings":{"content":{"source":"wporg-themes/meta","args":{"key":"trac-svn-link"}}}}} -->
+			<p></p>
+			<!-- /wp:paragraph -->
 
-		<!-- wp:paragraph -->
-		<p><a href="#">Translate this theme</a></p>
-		<!-- /wp:paragraph -->
+			<!-- wp:paragraph {"metadata":{"bindings":{"content":{"source":"wporg-themes/meta","args":{"key":"trac-browse-link"}}}}} -->
+			<p></p>
+			<!-- /wp:paragraph -->
 
-		<!-- wp:heading {"fontSize":"heading-4"} -->
-		<h2 class="wp-block-heading has-heading-4-font-size">Browse the code</h2>
-		<!-- /wp:heading -->
-
-		<!-- wp:paragraph -->
-		<p><a href="#">Development Log</a><br /><a href="#">Subversion Repository</a><br /><a href="#">Browse in Trac</a><br /><a href="#">Trac Tickets</a></p>
-		<!-- /wp:paragraph -->
+			<!-- wp:paragraph {"metadata":{"bindings":{"content":{"source":"wporg-themes/meta","args":{"key":"trac-tickets-link"}}}}} -->
+			<p></p>
+			<!-- /wp:paragraph -->
+		</div>
+		<!-- /wp:group -->
 	</div>
 	<!-- /wp:column -->
 </div>
