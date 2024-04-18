@@ -10,7 +10,6 @@ add_filter( 'wporg_query_filter_options_tags', __NAMESPACE__ . '\get_tags_option
 add_action( 'wporg_query_filter_in_form', __NAMESPACE__ . '\inject_other_filters' );
 add_filter( 'wporg_block_navigation_menus', __NAMESPACE__ . '\add_site_navigation_menus' );
 add_filter( 'render_block_wporg/link-wrapper', __NAMESPACE__ . '\inject_permalink_link_wrapper' );
-add_filter( 'render_block_data', __NAMESPACE__ . '\modify_pattern_include' );
 
 /**
  * Update the query total label to reflect "patterns" found.
@@ -151,28 +150,4 @@ function add_site_navigation_menus( $menus ) {
  */
 function inject_permalink_link_wrapper( $block_content ) {
 	return str_replace( 'href=""', 'href="' . get_permalink() . '"', $block_content );
-}
-
-/**
- * Update header template based on current query.
- *
- * @param array $parsed_block The block being rendered.
- *
- * @return array The updated block.
- */
-function modify_pattern_include( $parsed_block ) {
-	global $wp_query;
-	if ( 'core/pattern' !== $parsed_block['blockName'] || empty( $parsed_block['attrs']['slug'] ) ) {
-		return $parsed_block;
-	}
-
-	$browse = $wp_query->query['browse'] ?? false;
-	if (
-		'wporg-themes-2024/header-front-page' === $parsed_block['attrs']['slug'] &&
-		( ! is_home() || $browse || is_paged() )
-	) {
-			$parsed_block['attrs']['slug'] = 'wporg-themes-2024/header';
-	}
-
-	return $parsed_block;
 }
