@@ -17,6 +17,10 @@ require_once( __DIR__ . '/src/ratings-stars/index.php' );
 add_action( 'init', __NAMESPACE__ . '\fix_term_imports' );
 add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\enqueue_assets' );
 add_filter( 'frontpage_template_hierarchy', __NAMESPACE__ . '\use_archive_template_paged' );
+add_filter( 'post_thumbnail_html', __NAMESPACE__ . '\post_thumbnail_html', 10, 5 );
+
+// Remove filters added by plugin.
+remove_filter( 'post_thumbnail_html', 'wporg_themes_post_thumbnail_html', 10, 5 );
 
 /**
  * Temporary fix for permission problem during local install.
@@ -52,6 +56,45 @@ function use_archive_template_paged( $templates ) {
 		array_unshift( $templates, 'archive.html' );
 	}
 	return $templates;
+}
+
+/**
+ * Use theme screenshot for post thumbnails, add attributes to image tag.
+ *
+ * @param string   $html
+ * @param int      $post_id
+ * @param int      $post_thumbnail_id
+ * @param string   $size
+ * @param string[] $attr
+ *
+ * @return string
+ */
+function post_thumbnail_html( $html, $post_id, $post_thumbnail_id, $size, $attr ) {
+	$current_post = get_post( $post_id );
+	if ( 'repopackage' == $current_post->post_type ) {
+		$theme = new \WPORG_Themes_Repo_Package( $current_post );
+		$src   = add_query_arg(
+			array(
+				'w' => $size,
+				'strip' => 'all',
+			),
+			$theme->screenshot_url()
+		);
+
+		$html = '<img src="' . esc_url( $src ) . '"';
+
+		if ( is_array( $attr ) ) {
+			$attr['alt'] = '';
+
+			foreach ( $attr as $name => $value ) {
+				$html .= " $name=" . '"' . $value . '"';
+			}
+		}
+
+		$html .= ' />';
+	}
+
+	return $html;
 }
 
 /**
