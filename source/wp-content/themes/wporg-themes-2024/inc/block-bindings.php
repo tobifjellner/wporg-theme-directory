@@ -100,8 +100,8 @@ function get_meta_block_value( $args, $block ) {
 				urlencode_deep(
 					array_filter(
 						array(
-							'rep-theme'   => "https://wordpress.org/themes/{ $theme->slug }/",
-							'rep-subject' => "Reported Theme: { $theme->name }", // Not translated, email subject.
+							'rep-theme'   => "https://wordpress.org/themes/{$theme->slug}/",
+							'rep-subject' => "Reported Theme: {$theme->name}", // Not translated, email subject.
 							'rep-name'    => wp_get_current_user()->user_login,
 						)
 					)
@@ -112,31 +112,31 @@ function get_meta_block_value( $args, $block ) {
 		case 'translate-link':
 			return sprintf(
 				'<a href="%s">%s</a></p>',
-				esc_url( "https://translate.wordpress.org/projects/wp-themes/{ $theme->slug }" ),
+				esc_url( "https://translate.wordpress.org/projects/wp-themes/{$theme->slug}" ),
 				__( 'Translate this theme', 'wporg-themes' )
 			);
 		case 'trac-log-link':
 			return sprintf(
 				'<a href="%s" rel="nofollow">%s</a></p>',
-				esc_url( "https://themes.trac.wordpress.org/log/{ $theme->slug }" ),
+				esc_url( "https://themes.trac.wordpress.org/log/{$theme->slug}" ),
 				__( 'Development Log', 'wporg-themes' )
 			);
 		case 'trac-svn-link':
 			return sprintf(
 				'<a href="%s" rel="nofollow">%s</a></p>',
-				esc_url( "https://themes.svn.wordpress.org/{ $theme->slug }" ),
+				esc_url( "https://themes.svn.wordpress.org/{$theme->slug}" ),
 				__( 'Subversion Repository', 'wporg-themes' )
 			);
 		case 'trac-browse-link':
 			return sprintf(
 				'<a href="%s" rel="nofollow">%s</a></p>',
-				esc_url( "https://themes.trac.wordpress.org/browser/{ $theme->slug }" ),
+				esc_url( "https://themes.trac.wordpress.org/browser/{$theme->slug}" ),
 				__( 'Browse in Trac', 'wporg-themes' )
 			);
 		case 'trac-tickets-link':
 			return sprintf(
 				'<a href="%s" rel="nofollow">%s</a></p>',
-				esc_url( "themes.trac.wordpress.org/query?keywords=~theme-{ $theme->slug }" ),
+				esc_url( "themes.trac.wordpress.org/query?keywords=~theme-{$theme->slug}" ),
 				__( 'Trac Tickets', 'wporg-themes' )
 			);
 	}
