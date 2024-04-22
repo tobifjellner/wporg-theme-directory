@@ -93,6 +93,12 @@ function get_meta_block_value( $args, $block ) {
 			return esc_url( $theme->preview_url );
 		case 'download-url':
 			return esc_url( $theme->download_link );
+		case 'ratings-link':
+			return sprintf(
+				'<a href="%s">%s</a></p>',
+				esc_url( 'https://wordpress.org/support/theme/' . $theme->slug . '/reviews/' ),
+				__( 'See all reviews', 'wporg-themes' )
+			);
 		case 'support-forum-url':
 			return esc_url( '/support/theme/' . $theme->slug );
 		case 'report-url':
