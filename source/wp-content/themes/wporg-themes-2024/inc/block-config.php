@@ -105,7 +105,7 @@ function add_site_navigation_menus( $menus ) {
 
 	$menu[] = array(
 		'label' => __( 'Submit a theme', 'wporg-themes' ),
-		'url' => '/my-patterns/',
+		'url' => '/getting-started/',
 	);
 	$menu[] = array(
 		'label' => __( 'My favorites', 'wporg-themes' ),
@@ -113,7 +113,7 @@ function add_site_navigation_menus( $menus ) {
 	);
 	$menu[] = array(
 		'label' => __( 'Commercial theme companies', 'wporg-themes' ),
-		'url' => '/new-pattern/',
+		'url' => '/commercial/',
 	);
 
 	$current_browse = $wp_query->query['browse'] ?? false;
