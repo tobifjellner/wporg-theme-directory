@@ -139,9 +139,7 @@
 
 		<!-- wp:wporg/ratings-stars /-->
 
-		<!-- wp:paragraph -->
-		<p>[ratings]</p>
-		<!-- /wp:paragraph -->
+		<!-- wp:wporg/ratings-bars /-->
 
 		<!-- wp:heading {"fontSize":"heading-4"} -->
 		<h2 class="wp-block-heading has-heading-4-font-size"><?php esc_html_e( 'Support', 'wporg-themes' ); ?></h2>

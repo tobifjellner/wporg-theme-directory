@@ -1,0 +1,45 @@
+.wp-block-wporg-ratings-bars {
+	list-style: none;
+	padding-inline-start: unset;
+}
+
+.wporg-ratings-bars__bar {
+	a {
+		margin-bottom: 4px;
+		display: flex;
+		align-items: center;
+		gap: var(--wp--preset--spacing--10);
+		text-decoration: none;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+
+	&:last-child a {
+		margin-bottom: 0;
+	}
+}
+
+.wporg-ratings-bars__bar-label {
+	flex-basis: 5em;
+}
+
+.wporg-ratings-bars__bar-count {
+	flex-basis: 3em;
+	text-align: right;
+}
+
+.wporg-ratings-bars__bar-background {
+	display: inline-block;
+	background-color: var(--wp--preset--color--light-grey-2);
+	position: relative;
+	width: 100%;
+	height: var(--wp--preset--spacing--20);
+}
+
+.wporg-ratings-bars__bar-foreground {
+	position: absolute;
+	inset: 0 auto 0 0;
+	background-color: var(--wp--custom--wporg-ratings-stars--color--fill);
+}
