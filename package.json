@@ -11,6 +11,7 @@
 	},
 	"scripts": {
 		"build:theme": "yarn workspace wporg-themes-2024 build",
+		"lint:php": "composer lint ./source/wp-content/themes/wporg-themes-2024",
 		"setup:tools": "yarn && composer install && TEXTDOMAIN=wporg-themes composer exec update-configs",
 		"setup:wp": "wp-env run cli bash env/setup.sh",
 		"setup:refresh": "./env/refresh.sh",
