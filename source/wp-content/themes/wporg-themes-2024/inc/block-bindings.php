@@ -83,7 +83,7 @@ function get_meta_block_value( $args, $block ) {
 		case 'theme-link':
 			if ( ! empty( $theme->theme_url ) ) {
 				return sprintf(
-					'<a href="%s">%s</a></p>',
+					'<a href="%s">%s</a>',
 					esc_url( $theme->theme_url ),
 					__( 'Theme Homepage', 'wporg-themes' )
 				);
@@ -95,7 +95,7 @@ function get_meta_block_value( $args, $block ) {
 			return esc_url( $theme->download_link );
 		case 'ratings-link':
 			return sprintf(
-				'<a href="%s">%s</a></p>',
+				'<a href="%s">%s</a>',
 				esc_url( 'https://wordpress.org/support/theme/' . $theme->slug . '/reviews/' ),
 				__( 'See all reviews', 'wporg-themes' )
 			);
@@ -117,31 +117,31 @@ function get_meta_block_value( $args, $block ) {
 			return esc_url( $report_url );
 		case 'translate-link':
 			return sprintf(
-				'<a href="%s">%s</a></p>',
+				'<a href="%s">%s</a>',
 				esc_url( "https://translate.wordpress.org/projects/wp-themes/{$theme->slug}" ),
 				__( 'Translate this theme', 'wporg-themes' )
 			);
 		case 'trac-log-link':
 			return sprintf(
-				'<a href="%s" rel="nofollow">%s</a></p>',
+				'<a href="%s" rel="nofollow">%s</a>',
 				esc_url( "https://themes.trac.wordpress.org/log/{$theme->slug}" ),
 				__( 'Development Log', 'wporg-themes' )
 			);
 		case 'trac-svn-link':
 			return sprintf(
-				'<a href="%s" rel="nofollow">%s</a></p>',
+				'<a href="%s" rel="nofollow">%s</a>',
 				esc_url( "https://themes.svn.wordpress.org/{$theme->slug}" ),
 				__( 'Subversion Repository', 'wporg-themes' )
 			);
 		case 'trac-browse-link':
 			return sprintf(
-				'<a href="%s" rel="nofollow">%s</a></p>',
+				'<a href="%s" rel="nofollow">%s</a>',
 				esc_url( "https://themes.trac.wordpress.org/browser/{$theme->slug}" ),
 				__( 'Browse in Trac', 'wporg-themes' )
 			);
 		case 'trac-tickets-link':
 			return sprintf(
-				'<a href="%s" rel="nofollow">%s</a></p>',
+				'<a href="%s" rel="nofollow">%s</a>',
 				esc_url( "themes.trac.wordpress.org/query?keywords=~theme-{$theme->slug}" ),
 				__( 'Trac Tickets', 'wporg-themes' )
 			);
