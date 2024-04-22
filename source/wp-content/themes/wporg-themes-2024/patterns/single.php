@@ -92,7 +92,7 @@
 		<!-- wp:post-content /-->
 
 		<!-- wp:heading {"fontSize":"heading-4"} -->
-		<h2 class="wp-block-heading has-heading-4-font-size"><?php esc_attr_e( 'Tags', 'wporg-themes' ); ?></h2>
+		<h2 class="wp-block-heading has-heading-4-font-size"><?php esc_html_e( 'Tags', 'wporg-themes' ); ?></h2>
 		<!-- /wp:heading -->
 
 		<!-- wp:post-terms {"term":"post_tag"} /-->
