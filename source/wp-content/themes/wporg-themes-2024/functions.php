@@ -52,3 +52,12 @@ function use_archive_template_paged( $templates ) {
 	}
 	return $templates;
 }
+
+/**
+ * Generate the support URL for this theme.
+ *
+ * @todo Handle rosetta URLs.
+ */
+function get_support_url( $path ) {
+	return 'https://wordpress.org/support/theme/' . $path;
+}

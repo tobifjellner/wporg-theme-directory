@@ -5,6 +5,8 @@
 
 namespace WordPressdotorg\Theme\Theme_Directory_2024\Block_Bindings;
 
+use function WordPressdotorg\Theme\Theme_Directory_2024\get_support_url;
+
 add_action( 'init', __NAMESPACE__ . '\register_block_bindings' );
 
 /**
@@ -96,11 +98,11 @@ function get_meta_block_value( $args, $block ) {
 		case 'ratings-link':
 			return sprintf(
 				'<a href="%s">%s</a>',
-				esc_url( 'https://wordpress.org/support/theme/' . $theme->slug . '/reviews/' ),
+				esc_url( get_support_url( $theme->slug . '/reviews/' ) ),
 				__( 'See all reviews', 'wporg-themes' )
 			);
 		case 'support-forum-url':
-			return esc_url( '/support/theme/' . $theme->slug );
+			return esc_url( get_support_url( $theme->slug ) );
 		case 'report-url':
 			$report_url = add_query_arg(
 				urlencode_deep(
@@ -142,7 +144,7 @@ function get_meta_block_value( $args, $block ) {
 		case 'trac-tickets-link':
 			return sprintf(
 				'<a href="%s" rel="nofollow">%s</a>',
-				esc_url( "themes.trac.wordpress.org/query?keywords=~theme-{$theme->slug}" ),
+				esc_url( "https://themes.trac.wordpress.org/query?keywords=~theme-{$theme->slug}" ),
 				__( 'Trac Tickets', 'wporg-themes' )
 			);
 	}
