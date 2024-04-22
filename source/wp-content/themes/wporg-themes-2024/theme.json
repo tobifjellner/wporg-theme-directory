@@ -1,7 +1,15 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/theme.json",
 	"version": 2,
-	"settings": {},
+	"settings": {
+		"custom": {
+			"wporg/ratings-stars": {
+				"color": {
+					"fill": "var(--wp--preset--color--pomegrade-1)"
+				}
+			}
+		}
+	},
 	"styles": {
 		"blocks": {
 			"core/post-title": {

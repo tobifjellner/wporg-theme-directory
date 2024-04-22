@@ -126,8 +126,10 @@
 	<!-- wp:column {"width":"30%"} -->
 	<div class="wp-block-column" style="flex-basis:30%">
 		<!-- wp:heading {"fontSize":"heading-4"} -->
-		<h2 class="wp-block-heading has-heading-4-font-size">Ratings</h2>
+		<h2 class="wp-block-heading has-heading-4-font-size"><?php esc_html_e( 'Ratings', 'wporg-themes' ); ?></h2>
 		<!-- /wp:heading -->
+
+		<!-- wp:wporg/ratings-stars /-->
 
 		<!-- wp:paragraph -->
 		<p>[ratings]</p>
