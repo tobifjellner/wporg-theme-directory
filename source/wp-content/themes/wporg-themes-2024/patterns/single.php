@@ -97,13 +97,7 @@
 
 		<!-- wp:post-terms {"term":"post_tag"} /-->
 
-		<!-- wp:heading {"fontSize":"heading-4"} -->
-		<h2 class="wp-block-heading has-heading-4-font-size">Patterns</h2>
-		<!-- /wp:heading -->
-
-		<!-- wp:paragraph -->
-		<p>[set of images]</p>
-		<!-- /wp:paragraph -->
+		<!-- wp:wporg/theme-patterns /-->
 
 		<!-- wp:heading {"fontSize":"heading-4"} -->
 		<h2 class="wp-block-heading has-heading-4-font-size">Downloads per day</h2>
