@@ -22,7 +22,9 @@
 
 		<!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"flex","flexWrap":"nowrap"},"className":"wporg-query-filters"} -->
 		<div class="wp-block-group wporg-query-filters">
-			<!-- wp:wporg/query-filter {"key":"tags"} /-->
+			<!-- wp:wporg/query-filter {"key":"layouts"} /-->
+			<!-- wp:wporg/query-filter {"key":"features"} /-->
+			<!-- wp:wporg/query-filter {"key":"subjects"} /-->
 		</div>
 		<!-- /wp:group -->
 	</div>

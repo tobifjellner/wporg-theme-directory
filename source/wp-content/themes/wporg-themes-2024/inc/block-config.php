@@ -5,9 +5,13 @@
 
 namespace WordPressdotorg\Theme\Theme_Directory_2024\Block_Config;
 
+use function WordPressdotorg\Theme\Theme_Directory_2024\wporg_themes_get_feature_list;
+
 add_filter( 'wporg_query_total_label', __NAMESPACE__ . '\update_query_total_label', 10, 2 );
-add_filter( 'wporg_query_filter_options_tags', __NAMESPACE__ . '\get_tags_options' );
-add_action( 'wporg_query_filter_in_form', __NAMESPACE__ . '\inject_other_filters' );
+add_filter( 'wporg_query_filter_options_layouts', __NAMESPACE__ . '\get_layouts_options' );
+add_filter( 'wporg_query_filter_options_features', __NAMESPACE__ . '\get_features_options' );
+add_filter( 'wporg_query_filter_options_subjects', __NAMESPACE__ . '\get_subjects_options' );
+add_action( 'wporg_query_filter_in_form', __NAMESPACE__ . '\inject_other_filters', 10, 2 );
 add_filter( 'wporg_block_navigation_menus', __NAMESPACE__ . '\add_site_navigation_menus' );
 add_filter( 'render_block_wporg/link-wrapper', __NAMESPACE__ . '\inject_permalink_link_wrapper' );
 
@@ -24,35 +28,88 @@ function update_query_total_label( $label, $found_posts ) {
 }
 
 /**
- * Provide a list of tag options.
+ * Provide a list of layout options.
  *
  * @param array $options The options for this filter.
- * @return array New list of tag options.
+ * @return array New list of layout options.
  */
-function get_tags_options( $options ) {
+function get_layouts_options( $options ) {
 	global $wp_query;
-	$selected = isset( $wp_query->query['tag'] ) ? (array) $wp_query->query['tag'] : array();
+	$all_selected = isset( $wp_query->query['tag'] ) ? (array) $wp_query->query['tag'] : array();
+	$layouts = wporg_themes_get_feature_list( 'active', 'layouts' );
+	$selected = array_intersect( $all_selected, array_keys( $layouts ) );
 
 	$count = count( $selected );
 	$label = sprintf(
 		/* translators: The dropdown label for filtering, %s is the selected term count. */
-		_n( 'Filters <span>%s</span>', 'Filters <span>%s</span>', $count, 'wporg-themes' ),
+		_n( 'Layout <span>%s</span>', 'Layout <span>%s</span>', $count, 'wporg-themes' ),
 		$count
-	);
-
-	$tags = get_terms(
-		array(
-			'taxonomy' => 'post_tag',
-			'orderby' => 'name',
-		)
 	);
 
 	return array(
 		'label' => $label,
-		'title' => __( 'Filters', 'wporg-themes' ),
+		'title' => __( 'Layout', 'wporg-themes' ),
 		'key' => 'tag',
 		'action' => home_url( '/' ),
-		'options' => array_combine( wp_list_pluck( $tags, 'slug' ), wp_list_pluck( $tags, 'name' ) ),
+		'options' => $layouts,
+		'selected' => $selected,
+	);
+}
+
+/**
+ * Provide a list of feature options.
+ *
+ * @param array $options The options for this filter.
+ * @return array New list of feature options.
+ */
+function get_features_options( $options ) {
+	global $wp_query;
+	$all_selected = isset( $wp_query->query['tag'] ) ? (array) $wp_query->query['tag'] : array();
+	$features = wporg_themes_get_feature_list( 'active', 'features' );
+	$selected = array_intersect( $all_selected, array_keys( $features ) );
+
+	$count = count( $selected );
+	$label = sprintf(
+		/* translators: The dropdown label for filtering, %s is the selected term count. */
+		_n( 'Feature <span>%s</span>', 'Features <span>%s</span>', $count, 'wporg-themes' ),
+		$count
+	);
+
+	return array(
+		'label' => $label,
+		'title' => __( 'Features', 'wporg-themes' ),
+		'key' => 'tag',
+		'action' => home_url( '/' ),
+		'options' => $features,
+		'selected' => $selected,
+	);
+}
+
+/**
+ * Provide a list of subject options.
+ *
+ * @param array $options The options for this filter.
+ * @return array New list of subject options.
+ */
+function get_subjects_options( $options ) {
+	global $wp_query;
+	$all_selected = isset( $wp_query->query['tag'] ) ? (array) $wp_query->query['tag'] : array();
+	$subjects = wporg_themes_get_feature_list( 'active', 'subjects' );
+	$selected = array_intersect( $all_selected, array_keys( $subjects ) );
+
+	$count = count( $selected );
+	$label = sprintf(
+		/* translators: The dropdown label for filtering, %s is the selected term count. */
+		_n( 'Subject <span>%s</span>', 'Subjects <span>%s</span>', $count, 'wporg-themes' ),
+		$count
+	);
+
+	return array(
+		'label' => $label,
+		'title' => __( 'Subjects', 'wporg-themes' ),
+		'key' => 'tag',
+		'action' => home_url( '/' ),
+		'options' => $subjects,
 		'selected' => $selected,
 	);
 }
@@ -64,27 +121,32 @@ function get_tags_options( $options ) {
  * for example sites using a tag, a category, and matching a search term:
  *   ?browse=commercial&tag[]=accessibility-ready&s=blue`
  *
- * @param string $key The key for the current filter.
+ * @param string   $key   The key for the current filter.
+ * @param WP_Block $block The current block being rendered.
  */
-function inject_other_filters( $key ) {
+function inject_other_filters( $key, $block ) {
 	global $wp_query;
 
-	$query_vars = [ 'tag', 'browse' ];
-	foreach ( $query_vars as $query_var ) {
-		if ( ! isset( $wp_query->query[ $query_var ] ) ) {
-			continue;
+	if ( isset( $wp_query->query['tag'] ) ) {
+		$values = (array) $wp_query->query['tag'];
+		if ( 'tag' === $key ) {
+			$tag_key = $block->parsed_block['attrs']['key'] ?? false;
+			if ( in_array( $tag_key, [ 'layouts', 'features', 'subjects' ] ) ) {
+				$features = wporg_themes_get_feature_list( 'active', $tag_key );
+				$values = array_diff( $values, array_keys( $features ) );
+			}
 		}
-		if ( $key === $query_var ) {
-			continue;
-		}
-		$values = $wp_query->query[ $query_var ];
+
 		if ( is_array( $values ) ) {
 			foreach ( $values as $value ) {
-				printf( '<input type="hidden" name="%s[]" value="%s" />', esc_attr( $query_var ), esc_attr( $value ) );
+				printf( '<input type="hidden" name="tag[]" value="%s" />', esc_attr( $value ) );
 			}
-		} else {
-			printf( '<input type="hidden" name="%s" value="%s" />', esc_attr( $query_var ), esc_attr( $values ) );
 		}
+	}
+
+	if ( isset( $wp_query->query['browse'] ) && 'browse' !== $key ) {
+		$values = $wp_query->query['browse'];
+		printf( '<input type="hidden" name="browse" value="%s" />', esc_attr( $values ) );
 	}
 
 	// Pass through search query.
