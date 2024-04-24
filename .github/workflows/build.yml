@@ -5,7 +5,7 @@ on:
         branches:
             - trunk
         paths:
-            - public_html/wp-content/themes/wporg-themes-2024/**
+            - source/wp-content/themes/wporg-themes-2024/**
     # Enable manually running action if necessary.
     workflow_dispatch:
 
@@ -23,17 +23,17 @@ jobs:
 
             - name: Remove build artifacts
               run: |
-                  rm -rf public_html/wp-content/themes/wporg-themes-2024/node_modules
+                  rm -rf source/wp-content/themes/wporg-themes-2024/node_modules
 
             - name: Ignore .gitignore
               run: |
-                  git add public_html/wp-content/themes/wporg-themes-2024/* --force
+                  git add source/wp-content/themes/wporg-themes-2024/* --force
 
             - name: Append build number to version
               run: |
-                current_version=$(grep -oP 'Version: \K[0-9]+\.[0-9]+\.[0-9]+' public_html/wp-content/themes/wporg-themes-2024/style.css)
+                current_version=$(grep -oP 'Version: \K[0-9]+\.[0-9]+\.[0-9]+' source/wp-content/themes/wporg-themes-2024/style.css)
                 new_version="${current_version}-${GITHUB_SHA::7}"
-                sed -i "s/Version: $current_version/Version: $new_version/" public_html/wp-content/themes/wporg-themes-2024/style.css
+                sed -i "s/Version: $current_version/Version: $new_version/" source/wp-content/themes/wporg-themes-2024/style.css
                 
             - name: Commit and push
               # Using a specific hash here instead of a tagged version, for risk mitigation, since this action modifies our repo.
