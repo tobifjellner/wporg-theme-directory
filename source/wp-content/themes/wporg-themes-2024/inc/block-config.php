@@ -162,8 +162,6 @@ function add_site_navigation_menus( $menus ) {
 	global $wp_query;
 
 	$menu = array();
-	$categories = array();
-	$statuses = array();
 
 	$menu[] = array(
 		'label' => __( 'Submit a theme', 'wporg-themes' ),
@@ -179,11 +177,18 @@ function add_site_navigation_menus( $menus ) {
 	);
 
 	$current_browse = $wp_query->query['browse'] ?? false;
-	$business_model = array(
+	$current_tag = $wp_query->query['tag'] ?? false;
+
+	$browse_menu = array(
 		array(
-			'label' => __( 'All', 'wporg-themes' ),
+			'label' => __( 'Popular', 'wporg-themes' ),
 			'url' => home_url( '/' ),
-			'className' => ! $current_browse ? 'current-menu-item' : '',
+			'className' => is_home() && ! $current_browse ? 'current-menu-item' : '',
+		),
+		array(
+			'label' => __( 'Latest', 'wporg-themes' ),
+			'url' => home_url( '/browse/new/' ),
+			'className' => 'new' === $current_browse ? 'current-menu-item' : '',
 		),
 		array(
 			'label' => __( 'Community', 'wporg-themes' ),
@@ -195,11 +200,16 @@ function add_site_navigation_menus( $menus ) {
 			'url' => home_url( '/browse/commercial/' ),
 			'className' => 'commercial' === $current_browse ? 'current-menu-item' : '',
 		),
+		array(
+			'label' => __( 'Block themes', 'wporg-themes' ),
+			'url' => home_url( '/tags/full-site-editing/' ),
+			'className' => 'full-site-editing' === $current_tag ? 'current-menu-item' : '',
+		),
 	);
 
 	return array(
 		'main' => $menu,
-		'browse' => $business_model,
+		'browse' => $browse_menu,
 	);
 }
 
