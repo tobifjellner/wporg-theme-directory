@@ -103,6 +103,8 @@ function get_meta_block_value( $args, $block ) {
 			);
 		case 'support-forum-url':
 			return esc_url( get_support_url( $theme->slug ) );
+		case 'submit-review-url':
+			return esc_url( get_support_url( $theme->slug . '/reviews/#new-post' ) );
 		case 'report-url':
 			$report_url = add_query_arg(
 				urlencode_deep(
