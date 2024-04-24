@@ -14,6 +14,9 @@ function get_pattern_preview_block( $pattern, $is_overflow = false ) {
 		'width' => 275,
 		// phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase -- Name comes from API.
 		'viewportWidth' => $pattern->viewportWidth ?? 1200,
+		// phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase -- Name comes from API.
+		'viewportHeight' => isset( $pattern->viewportWidth ) ? $pattern->viewportWidth * 0.75 : 900,
+		'fullPage' => false,
 	);
 	$block_markup = do_blocks( sprintf( '<!-- wp:wporg/screenshot-preview %s /-->', wp_json_encode( $args ) ) );
 
@@ -37,6 +40,10 @@ $url = 'https://wp-themes.com/' . $theme_post->post_name . '/';
 $url = add_query_arg( 'rest_route', '/wporg-patterns/v1/patterns', $url );
 $response = wp_remote_get( $url );
 if ( is_wp_error( $response ) ) {
+	return;
+}
+
+if ( 200 !== wp_remote_retrieve_response_code( $response ) ) {
 	return;
 }
 
