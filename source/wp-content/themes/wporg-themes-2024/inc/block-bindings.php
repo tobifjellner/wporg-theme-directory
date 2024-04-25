@@ -36,6 +36,9 @@ function get_meta_block_value( $args, $block ) {
 
 	$p = get_post( $block->context['postId'] );
 	$theme = wporg_themes_theme_information( $p->post_name );
+	if ( isset( $theme->error ) ) {
+		return '';
+	}
 
 	switch ( $args['key'] ) {
 		case 'version':
