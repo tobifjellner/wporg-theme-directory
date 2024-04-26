@@ -23,6 +23,7 @@
 		top: auto;
 		bottom: 0;
 		background-color: inherit;
+		margin-block-start: auto;
 		margin-inline: calc(-1 * var(--wp--preset--spacing--20));
 		padding-inline: var(--wp--preset--spacing--20);
 	}
