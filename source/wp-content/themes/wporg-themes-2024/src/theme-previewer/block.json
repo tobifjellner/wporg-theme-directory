@@ -1,19 +1,13 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 2,
-	"name": "wporg/theme-patterns",
+	"name": "wporg/theme-previewer",
 	"version": "0.1.0",
-	"title": "Theme patterns",
+	"title": "Theme previewer",
 	"category": "design",
 	"icon": "",
-	"description": "A list of patterns provided by this theme (with screenshots).",
+	"description": "An iframe portal to view the current theme's preview site.",
 	"textdomain": "wporg",
-	"attributes": {
-		"showAll": {
-			"type": "boolean",
-			"default": false
-		}
-	},
 	"supports": {
 		"html": false
 	},

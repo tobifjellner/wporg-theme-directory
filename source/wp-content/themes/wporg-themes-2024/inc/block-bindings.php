@@ -95,9 +95,11 @@ function get_meta_block_value( $args, $block ) {
 			}
 			return '';
 		case 'preview-url':
-			return esc_url( $theme->preview_url );
+			return esc_url( untrailingslashit( get_permalink( $p ) ) . '/preview/' );
 		case 'download-url':
 			return esc_url( $theme->download_link );
+		case 'download-text':
+			return esc_html__( 'Download', 'wporg-themes' );
 		case 'ratings-link':
 			return sprintf(
 				'<a href="%s">%s</a>',
@@ -152,5 +154,12 @@ function get_meta_block_value( $args, $block ) {
 				esc_url( "https://themes.trac.wordpress.org/query?keywords=~theme-{$theme->slug}" ),
 				__( 'Trac Tickets', 'wporg-themes' )
 			);
+		case 'zip-name':
+			$filename = basename( $theme->download_link );
+			return esc_html( $filename );
+		case 'preview-back-url':
+			return get_permalink();
+		case 'preview-back-text':
+			return __( '← Back', 'wporg-themes' );
 	}
 }

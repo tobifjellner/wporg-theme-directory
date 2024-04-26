@@ -26,3 +26,50 @@
 	border-radius: 2px;
 	box-shadow: 0 0 0 1.5px var(--wp--custom--link--color--text);
 }
+
+:where(main) a:where(:not(.wp-element-button)):focus,
+:where(main) button:where(:not([class*="wp-block-button"])):focus {
+	outline: none;
+	border-radius: 2px;
+	box-shadow: 0 0 0 1.5px var(--wp--custom--link--color--text);
+}
+
+:where(body.wporg-theme-preview) .wporg-theme-preview__container {
+	height: 100vh;
+}
+
+:where(body.wporg-theme-preview) .wporg-theme-preview__container > .wp-block-column {
+	display: flex;
+	flex-direction: column;
+	overflow: auto;
+}
+
+:where(body.wporg-theme-preview) .wp-block-column.has-charcoal-1-background-color {
+	/* Set the link color so that the focus outline is visible. */
+	--wp--custom--link--color--text: var(--wp--preset--color--blueberry-3);
+}
+
+:where(body.wporg-theme-preview) .wporg-theme-preview__download {
+	top: auto;
+	bottom: 0;
+	background-color: inherit;
+	margin-inline: calc(-1 * var(--wp--preset--spacing--20));
+	padding-inline: var(--wp--preset--spacing--20);
+}
+
+:where(body.wporg-theme-preview) .wporg-theme-patterns__grid {
+	grid-template-columns: repeat(2, 1fr);
+	gap: var(--wp--preset--spacing--10);
+}
+
+:where(body.wporg-theme-preview) .wp-block-wporg-screenshot-preview:where(.is-linked-image):hover {
+	border-color: var(--wp--preset--color--blueberry-2);
+	border-width: 1.5px;
+}
+
+:where(body.wporg-theme-preview) .wp-block-wporg-screenshot-preview:where(.is-linked-image):focus-within {
+	border-color: var(--wp--preset--color--blueberry-1);
+	border-width: 1.5px;
+	outline-color: var(--wp--preset--color--white);
+	outline-offset: 0;
+}
