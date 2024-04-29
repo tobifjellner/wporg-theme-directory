@@ -11,6 +11,8 @@ $theme_post = get_post( $block->context['postId'] );
 $theme = wporg_themes_theme_information( $theme_post->post_name );
 
 $url = $theme->preview_url ?? '';
+$permalink = get_permalink() . 'preview/';
+$selected = array();
 
 // Switch to using the pattern URL if a pattern is requested.
 if ( isset( $_REQUEST['pattern_name'] ) ) {
@@ -20,6 +22,7 @@ if ( isset( $_REQUEST['pattern_name'] ) ) {
 		$matches = wp_list_filter( $patterns, [ 'name' => $show_pattern ] );
 		if ( $matches ) {
 			$url = current( $matches )->link;
+			$selected['pattern_name'] = $show_pattern;
 		}
 	}
 }
@@ -32,6 +35,7 @@ if ( isset( $_REQUEST['style_variation'] ) ) {
 		$matches = wp_list_filter( $styles, [ 'title' => $show_style ] );
 		if ( $matches ) {
 			$url = add_query_arg( 'style_variation', $show_style, $url );
+			$selected['style_variation'] = $show_style;
 		}
 	}
 }
@@ -42,6 +46,9 @@ $is_valid_url = $url && 'wp-themes.com' === wp_parse_url( $url, PHP_URL_HOST );
 $init_state = [
 	'isLoaded' => ! $is_valid_url,
 	'url' => $url,
+	'permalink' => $permalink,
+	'previewBase' => $theme->preview_url,
+	'selected' => $selected,
 ];
 $encoded_state = wp_json_encode( $init_state );
 
@@ -60,6 +67,23 @@ $markup = <<<BLOCKS
 </div>
 <!-- /wp:columns -->
 BLOCKS;
+
+$html = new WP_HTML_Tag_Processor( $content );
+while ( $html->next_tag( [ 'class_name' => 'wp-block-wporg-screenshot-preview' ] ) ) {
+	$html->next_tag( 'a' );
+	$preview_link = $html->get_attribute( 'href' );
+	if ( $preview_link ) {
+		$query = wp_parse_url( $preview_link, PHP_URL_QUERY );
+		$args = wp_parse_args( $query );
+		foreach ( $args as $key => $value ) {
+			$html->set_attribute( 'data-' . esc_attr( $key ), esc_attr( $value ) );
+		}
+
+		$html->set_attribute( 'data-wp-on--click', 'wporg/themes/preview::actions.navigateIframe' );
+	}
+}
+
+$content = $html->get_updated_html();
 
 $markup = sprintf( $markup, $content, esc_url_raw( $url ) );
 

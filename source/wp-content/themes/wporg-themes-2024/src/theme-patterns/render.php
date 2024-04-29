@@ -8,12 +8,6 @@ use function WordPressdotorg\Theme\Theme_Directory_2024\{ get_support_url, get_t
 function get_pattern_preview_block( $pattern, $is_overflow = false ) {
 	$preview_link = add_query_arg( 'pattern_name', $pattern->name, $pattern->preview_base );
 
-	// If the page has a `style_variation` set, pass it through.
-	if ( isset( $_REQUEST['style_variation'] ) ) {
-		$style = sanitize_text_field( wp_unslash( $_REQUEST['style_variation'] ) );
-		$preview_link = add_query_arg( 'style_variation', $style, $preview_link );
-	}
-
 	$args = array(
 		'src' => $pattern->preview_link,
 		// translators: %s pattern name.
