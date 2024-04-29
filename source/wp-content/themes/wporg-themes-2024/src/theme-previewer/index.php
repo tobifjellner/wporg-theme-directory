@@ -1,7 +1,7 @@
 <?php
 /**
  * Block Name: Theme previewer
- * Description: An iframe portal to view the current theme's preview site.
+ * Description: A wrapper for the current theme's preview page.
  *
  * @package wporg
  */
@@ -17,4 +17,5 @@ add_action( 'init', __NAMESPACE__ . '\init' );
  */
 function init() {
 	register_block_type( dirname( dirname( __DIR__ ) ) . '/build/theme-previewer' );
+	register_block_type( dirname( dirname( __DIR__ ) ) . '/build/theme-previewer/iframe' );
 }

@@ -1,6 +1,6 @@
 @import "./page";
 
-.wp-block-wporg-theme-previewer {
+.wp-block-wporg-theme-previewer-iframe {
 	height: 100%;
 	width: 100%;
 	position: relative;
@@ -31,23 +31,29 @@
 		}
 	}
 
-	&:not(.is-loaded)::before {
-		content: "";
-		display: inline-block;
-		box-sizing: border-box;
-		position: absolute;
-		left: calc(50% - 8px);
-		top: calc(50% - 8px);
-		z-index: 0;
-		height: 16px;
-		width: 16px;
-		border: 1.5px solid;
-		border-color:
-			var(--wp--preset--color--charcoal-4)
-			var(--wp--preset--color--charcoal-4)
-			var(--wp--preset--color--blueberry-3);
-		border-radius: 50%;
-		animation: rotate-360 1.4s linear infinite;
+	&:not(.is-loaded, .has-invalid-preview) {
+		&::before {
+			content: "";
+			display: inline-block;
+			box-sizing: border-box;
+			position: absolute;
+			left: calc(50% - 8px);
+			top: calc(50% - 8px);
+			z-index: 0;
+			height: 16px;
+			width: 16px;
+			border: 1.5px solid;
+			border-color:
+				var(--wp--preset--color--charcoal-4)
+				var(--wp--preset--color--charcoal-4)
+				var(--wp--preset--color--blueberry-3);
+			border-radius: 50%;
+			animation: rotate-360 1.4s linear infinite;
+		}
+
+		iframe {
+			display: none;
+		}
 	}
 }
 
