@@ -103,7 +103,7 @@
 		"wordpress-meta/wporg-themes": "1",
 		"wp-coding-standards/wpcs": "2.*",
 		"wp-phpunit/wp-phpunit": "^5.4",
-		"wpackagist-plugin/gutenberg": "18.0.1",
+		"wpackagist-plugin/gutenberg": "*",
 		"wpackagist-plugin/jetpack": "*",
 		"wpackagist-plugin/wordpress-importer": "*",
 		"wporg/wporg-repo-tools": "dev-trunk",
