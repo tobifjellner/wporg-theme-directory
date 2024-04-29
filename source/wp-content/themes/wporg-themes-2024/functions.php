@@ -25,6 +25,8 @@ add_filter( 'post_thumbnail_html', __NAMESPACE__ . '\post_thumbnail_html', 10, 5
 add_action( 'body_class', __NAMESPACE__ . '\add_extra_body_class' );
 add_filter( 'frontpage_template_hierarchy', __NAMESPACE__ . '\use_archive_template_paged' );
 add_action( 'single_template_hierarchy', __NAMESPACE__ . '\load_theme_preview' );
+add_filter( 'query_loop_block_query_vars', __NAMESPACE__ . '\modify_query_loop_block_query_vars', 10, 2 );
+add_filter( 'post_type_link', __NAMESPACE__ . '\update_theme_shop_permalink', 10, 2 );
 
 // Remove filters added by plugin.
 remove_filter( 'post_thumbnail_html', 'wporg_themes_post_thumbnail_html', 10, 5 );
@@ -109,6 +111,37 @@ function post_thumbnail_html( $html, $post_id, $post_thumbnail_id, $size, $attr 
 		}
 
 		$html .= ' />';
+	} else if ( 'theme_shop' == $current_post->post_type ) {
+		$src = get_post_meta( $current_post->ID, 'image_url', true );
+		if ( ! $src ) {
+			$url = get_post_meta( $current_post->ID, 'url', true );
+			if ( $url ) {
+				$src = add_query_arg(
+					array(
+						'w' => 700,
+						'vpw' => 1200,
+						'vph' => 900,
+					),
+					'https://s0.wp.com/mshots/v1/' . urlencode( $url )
+				);
+			}
+		}
+
+		if ( ! $src ) {
+			return '';
+		}
+
+		$html = '<img src="' . esc_url( $src ) . '"';
+
+		if ( is_array( $attr ) ) {
+			$attr['alt'] = '';
+
+			foreach ( $attr as $name => $value ) {
+				$html .= " $name=" . '"' . $value . '"';
+			}
+		}
+
+		$html .= ' />';
 	}
 
 	return $html;
@@ -154,6 +187,43 @@ function load_theme_preview( $templates ) {
 	}
 
 	return $templates;
+}
+
+/**
+ * Override the Query Loop block on the Commercial page.
+ *
+ * @param array    $query Array containing parameters for `WP_Query` as parsed by the block context.
+ * @param WP_Block $block Block instance.
+ *
+ * @return array
+ */
+function modify_query_loop_block_query_vars( $query, $block ) {
+	if ( is_page( 'commercial' ) && 'theme_shop' === $block->context['query']['postType'] ) {
+		$query = array(
+			'post_type'      => 'theme_shop',
+			'posts_per_page' => -1,
+			'orderby'        => 'rand(' . gmdate( 'YmdH' ) . ')',
+		);
+	}
+
+	return $query;
+}
+
+/**
+ * Update the permalink for theme shops, should redirect to the shop URL.
+ *
+ * @param string  $post_link The post's permalink.
+ * @param WP_Post $post      The post in question.
+ */
+function update_theme_shop_permalink( $post_link, $post ) {
+	if ( 'theme_shop' === $post->post_type ) {
+		$url = get_post_meta( $post->ID, 'url', true );
+		if ( $url ) {
+			$post_link = $url;
+		}
+	}
+
+	return $post_link;
 }
 
 /**
