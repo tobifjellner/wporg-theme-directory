@@ -202,3 +202,9 @@
 <!-- wp:spacer {"height":"60px","align":"wide","style":{"spacing":{"margin":{"top":"0","bottom":"var:preset|spacing|50"}}}} -->
 <div style="margin-top:0;margin-bottom:var(--wp--preset--spacing--50);height:60px" aria-hidden="true" class="wp-block-spacer alignwide"></div>
 <!-- /wp:spacer -->
+
+<!-- wp:group {"align":"full","layout":{"type":"default"}} -->
+<div class="wp-block-group alignfull">
+	<!-- wp:pattern {"slug":"wporg-parent-2021/post-navigation"} /-->
+</div>
+<!-- /wp:group -->
