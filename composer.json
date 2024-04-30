@@ -103,6 +103,7 @@
 		"wordpress-meta/wporg-themes": "1",
 		"wp-coding-standards/wpcs": "2.*",
 		"wp-phpunit/wp-phpunit": "^5.4",
+		"wpackagist-plugin/chart-card": "*",
 		"wpackagist-plugin/gutenberg": "*",
 		"wpackagist-plugin/jetpack": "*",
 		"wpackagist-plugin/wordpress-importer": "*",
