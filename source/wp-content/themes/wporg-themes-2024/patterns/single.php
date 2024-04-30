@@ -16,9 +16,7 @@
 	</div>
 	<!-- /wp:group -->
 
-	<!-- wp:paragraph -->
-	<p>❤️</p>
-	<!-- /wp:paragraph -->
+	<!-- wp:wporg/favorite-button /-->
 </div>
 <!-- /wp:group -->
 

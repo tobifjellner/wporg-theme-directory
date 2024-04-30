@@ -4,10 +4,12 @@ namespace WordPressdotorg\Theme\Theme_Directory_2024;
 
 require_once( __DIR__ . '/inc/block-bindings.php' );
 require_once( __DIR__ . '/inc/block-config.php' );
+require_once( __DIR__ . '/inc/rest-api.php' );
 
 // Block files
 require_once( __DIR__ . '/src/business-model-notice/index.php' );
 require_once( __DIR__ . '/src/child-theme-notice/index.php' );
+require_once( __DIR__ . '/src/favorite-button/index.php' );
 require_once( __DIR__ . '/src/ratings-bars/index.php' );
 require_once( __DIR__ . '/src/ratings-stars/index.php' );
 require_once( __DIR__ . '/src/theme-patterns/index.php' );
