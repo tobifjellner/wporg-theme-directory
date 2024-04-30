@@ -1,0 +1,40 @@
+.wp-block-wporg-theme-upload-form {
+	margin-top: var(--wp--preset--spacing--40);
+
+	h2 {
+		margin-top: var(--wp--preset--spacing--20) !important;
+	}
+
+	.upload-checkboxes {
+		label {
+			display: grid;
+			grid-template-columns: auto 1fr;
+			align-items: baseline;
+			gap: 0.5em;
+			margin-block-end: 0.5em;
+		}
+
+		input {
+			position: relative;
+			top: 1px;
+			margin: 0;
+		}
+
+		span {
+			display: block;
+			line-height: var(--wp--custom--body--short-text--typography--line-height);
+		}
+	}
+
+	.wp-block-wporg-notice {
+		ul {
+			margin: 0;
+		}
+
+		&.is-info-notice ul {
+			padding: 0;
+			list-style: none;
+		}
+	}
+
+}
