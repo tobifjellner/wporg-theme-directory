@@ -173,12 +173,15 @@ function add_extra_body_class( $classes ) {
 }
 
 /**
- * Switch to the archive.html template on paged requests.
+ * Switch to the archive.html template on paged requests & other browse tabs.
  *
  * @param string[] $templates A list of template candidates, in descending order of priority.
  */
 function use_archive_template_paged( $templates ) {
-	if ( is_paged() ) {
+	global $wp_query;
+	$current_browse = $wp_query->query['browse'] ?? false;
+
+	if ( is_paged() || $current_browse ) {
 		array_unshift( $templates, 'archive.html' );
 	}
 	return $templates;
