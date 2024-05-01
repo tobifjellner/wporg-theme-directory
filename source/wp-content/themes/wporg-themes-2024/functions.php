@@ -309,7 +309,9 @@ function strip_tag_query_string( $redirect_url ) {
 /**
  * Generate the support URL for this theme.
  *
- * @todo Handle rosetta URLs.
+ * @param string $path Path to the forum (theme name, maybe with review path).
+ *
+ * @return string
  */
 function get_support_url( $path ) {
 	return 'https://wordpress.org/support/theme/' . $path;

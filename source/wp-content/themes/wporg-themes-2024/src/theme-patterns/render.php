@@ -1,6 +1,6 @@
 <?php
 
-use function WordPressdotorg\Theme\Theme_Directory_2024\{ get_support_url, get_theme_patterns };
+use function WordPressdotorg\Theme\Theme_Directory_2024\get_theme_patterns;
 
 /**
  * Convert a pattern object into a screenshot preview block.
