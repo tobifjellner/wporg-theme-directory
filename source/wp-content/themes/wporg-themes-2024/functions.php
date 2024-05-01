@@ -22,7 +22,7 @@ require_once( __DIR__ . '/src/theme-upload-form/index.php' );
  * Actions and filters.
  */
 add_action( 'init', __NAMESPACE__ . '\fix_term_imports' );
-add_action( 'init', __NAMESPACE__ . '\add_preview_endpoint' );
+add_action( 'init', __NAMESPACE__ . '\set_up_rewrites' );
 add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\enqueue_assets' );
 add_filter( 'post_thumbnail_html', __NAMESPACE__ . '\post_thumbnail_html', 10, 5 );
 add_action( 'body_class', __NAMESPACE__ . '\add_extra_body_class' );
@@ -30,6 +30,8 @@ add_filter( 'frontpage_template_hierarchy', __NAMESPACE__ . '\use_archive_templa
 add_action( 'single_template_hierarchy', __NAMESPACE__ . '\load_theme_preview' );
 add_filter( 'query_loop_block_query_vars', __NAMESPACE__ . '\modify_query_loop_block_query_vars', 10, 2 );
 add_filter( 'post_type_link', __NAMESPACE__ . '\update_theme_shop_permalink', 10, 2 );
+add_action( 'template_redirect', __NAMESPACE__ . '\redirect_term_archives' );
+add_filter( 'redirect_canonical', __NAMESPACE__ . '\strip_tag_query_string' );
 
 // Remove filters added by plugin.
 remove_filter( 'post_thumbnail_html', 'wporg_themes_post_thumbnail_html', 10, 5 );
@@ -59,9 +61,14 @@ function fix_term_imports() {
 }
 
 /**
- * Set up the `view` endpoint.
+ * Set up the rewrite updates:
+ *  - Add the preview endpoint to theme pages.
+ *  - Enable the tag_slug__and query parameter.
  */
-function add_preview_endpoint() {
+function set_up_rewrites() {
+	global $wp;
+	$wp->add_query_var( 'tag_slug__and' );
+
 	add_rewrite_endpoint( 'preview', EP_PERMALINK, 'view' );
 }
 
@@ -230,12 +237,98 @@ function update_theme_shop_permalink( $post_link, $post ) {
 }
 
 /**
+ * Redirect category and tag archives to their canonical URLs.
+ *
+ * This prevents double URLs for queries. For example:
+ *  - /?browse=commercial -> /browse/commercial/
+ *  - /?tag_slug__and[]=block-styles&tag_slug__and[]=four-columns -> /tags/block-styles+four-columns/
+ *  - /?browse=commercial&tag_slug__and[]=block-styles -> /browse/commercial/?tag_slug__and[]=block-styles
+ *  - /?s=blue -> /search/blue
+ */
+function redirect_term_archives() {
+	global $wp_query, $wp;
+	$url = false;
+	$query_vars = [];
+	$is_browse_url = str_starts_with( $wp->request, 'browse/' );
+	$is_tags_url = str_starts_with( $wp->request, 'tags/' );
+
+	$browse = sanitize_text_field( $wp_query->query['browse'] ?? '' );
+	$terms = array_map( 'sanitize_text_field', get_query_tags() );
+
+	if ( ! empty( $browse ) && ! $is_browse_url ) {
+		$url = home_url( '/browse/' . $browse . '/' );
+		$query_vars = [ 's', 'tag', 'tag_slug__and' ];
+
+	} else if ( count( $terms ) && ! $is_browse_url && ! $is_tags_url ) {
+		if ( count( $terms ) === 1 ) {
+			$url = get_term_link( $terms[0], 'post_tag' );
+		} else {
+			$path = 'tags/' . implode( '+', $terms ) . '/';
+			$url = home_url( $path );
+		}
+		$query_vars = [ 's', 'browse' ];
+
+	} else if ( ! empty( $wp_query->query['s'] ) && empty( $wp->request ) ) {
+		$search = sanitize_text_field( $wp_query->query['s'] );
+		$url = home_url( 'search/' . $search . '/' );
+	}
+
+	if ( $url ) {
+		// Pass through the other query parameters.
+		foreach ( $query_vars as $query_var ) {
+			if ( isset( $wp_query->query[ $query_var ] ) ) {
+				$url = add_query_arg( $query_var, $wp_query->query[ $query_var ], $url );
+			}
+		}
+
+		// Redirect to the new permalink-style URL.
+		wp_safe_redirect( $url );
+		exit;
+	}
+}
+
+/**
+ * Strip out the tag_slug__and query string before the redirect happens.
+ *
+ * This prevents URLs like `/tags/three-columns/?tag_slug__and[0]=three-columns`.
+ *
+ * @param string $redirect_url  The redirect URL.
+ *
+ * @return string The updated URL.
+ */
+function strip_tag_query_string( $redirect_url ) {
+	if ( str_contains( $redirect_url, '/tags/' ) ) {
+		$redirect_url = remove_query_arg( 'tag_slug__and', $redirect_url );
+	}
+	return $redirect_url;
+}
+
+/**
  * Generate the support URL for this theme.
  *
  * @todo Handle rosetta URLs.
  */
 function get_support_url( $path ) {
 	return 'https://wordpress.org/support/theme/' . $path;
+}
+
+/**
+ * Get the selected tags from the current query.
+ *
+ * @return array
+ */
+function get_query_tags() {
+	global $wp_query;
+	$tags = isset( $wp_query->query['tag'] ) ? $wp_query->query['tag'] : array();
+	if ( is_array( $tags ) ) {
+		// Workaround to make sure the default tag query behavior still works.
+		$tags = [];
+	} else if ( is_string( $tags ) ) {
+		$tags = explode( '+', $tags );
+	}
+	$tags_and = isset( $wp_query->query['tag_slug__and'] ) ? (array) $wp_query->query['tag_slug__and'] : array();
+
+	return array_merge( $tags, $tags_and );
 }
 
 /**

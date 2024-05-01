@@ -5,7 +5,7 @@
 
 namespace WordPressdotorg\Theme\Theme_Directory_2024\Block_Config;
 
-use function WordPressdotorg\Theme\Theme_Directory_2024\wporg_themes_get_feature_list;
+use function WordPressdotorg\Theme\Theme_Directory_2024\{ get_query_tags, wporg_themes_get_feature_list };
 
 add_filter( 'wporg_query_total_label', __NAMESPACE__ . '\update_query_total_label', 10, 2 );
 add_filter( 'wporg_query_filter_options_layouts', __NAMESPACE__ . '\get_layouts_options' );
@@ -34,10 +34,9 @@ function update_query_total_label( $label, $found_posts ) {
  * @return array New list of layout options.
  */
 function get_layouts_options( $options ) {
-	global $wp_query;
-	$all_selected = isset( $wp_query->query['tag'] ) ? (array) $wp_query->query['tag'] : array();
+	$tags = get_query_tags();
 	$layouts = wporg_themes_get_feature_list( 'active', 'layouts' );
-	$selected = array_intersect( $all_selected, array_keys( $layouts ) );
+	$selected = array_intersect( $tags, array_keys( $layouts ) );
 
 	$count = count( $selected );
 	$label = sprintf(
@@ -49,7 +48,7 @@ function get_layouts_options( $options ) {
 	return array(
 		'label' => $label,
 		'title' => __( 'Layout', 'wporg-themes' ),
-		'key' => 'tag',
+		'key' => 'tag_slug__and',
 		'action' => home_url( '/' ),
 		'options' => $layouts,
 		'selected' => $selected,
@@ -63,10 +62,9 @@ function get_layouts_options( $options ) {
  * @return array New list of feature options.
  */
 function get_features_options( $options ) {
-	global $wp_query;
-	$all_selected = isset( $wp_query->query['tag'] ) ? (array) $wp_query->query['tag'] : array();
+	$tags = get_query_tags();
 	$features = wporg_themes_get_feature_list( 'active', 'features' );
-	$selected = array_intersect( $all_selected, array_keys( $features ) );
+	$selected = array_intersect( $tags, array_keys( $features ) );
 
 	$count = count( $selected );
 	$label = sprintf(
@@ -78,7 +76,7 @@ function get_features_options( $options ) {
 	return array(
 		'label' => $label,
 		'title' => __( 'Features', 'wporg-themes' ),
-		'key' => 'tag',
+		'key' => 'tag_slug__and',
 		'action' => home_url( '/' ),
 		'options' => $features,
 		'selected' => $selected,
@@ -92,10 +90,9 @@ function get_features_options( $options ) {
  * @return array New list of subject options.
  */
 function get_subjects_options( $options ) {
-	global $wp_query;
-	$all_selected = isset( $wp_query->query['tag'] ) ? (array) $wp_query->query['tag'] : array();
+	$tags = get_query_tags();
 	$subjects = wporg_themes_get_feature_list( 'active', 'subjects' );
-	$selected = array_intersect( $all_selected, array_keys( $subjects ) );
+	$selected = array_intersect( $tags, array_keys( $subjects ) );
 
 	$count = count( $selected );
 	$label = sprintf(
@@ -107,7 +104,7 @@ function get_subjects_options( $options ) {
 	return array(
 		'label' => $label,
 		'title' => __( 'Subjects', 'wporg-themes' ),
-		'key' => 'tag',
+		'key' => 'tag_slug__and',
 		'action' => home_url( '/' ),
 		'options' => $subjects,
 		'selected' => $selected,
@@ -127,9 +124,9 @@ function get_subjects_options( $options ) {
 function inject_other_filters( $key, $block ) {
 	global $wp_query;
 
-	if ( isset( $wp_query->query['tag'] ) ) {
-		$values = (array) $wp_query->query['tag'];
-		if ( 'tag' === $key ) {
+	$values = get_query_tags();
+	if ( $values ) {
+		if ( 'tag_slug__and' === $key ) {
 			$tag_key = $block->parsed_block['attrs']['key'] ?? false;
 			if ( in_array( $tag_key, [ 'layouts', 'features', 'subjects' ] ) ) {
 				$features = wporg_themes_get_feature_list( 'active', $tag_key );
@@ -139,7 +136,7 @@ function inject_other_filters( $key, $block ) {
 
 		if ( is_array( $values ) ) {
 			foreach ( $values as $value ) {
-				printf( '<input type="hidden" name="tag[]" value="%s" />', esc_attr( $value ) );
+				printf( '<input type="hidden" name="tag_slug__and[]" value="%s" />', esc_attr( $value ) );
 			}
 		}
 	}
@@ -177,7 +174,7 @@ function add_site_navigation_menus( $menus ) {
 	);
 
 	$current_browse = $wp_query->query['browse'] ?? false;
-	$current_tag = $wp_query->query['tag'] ?? false;
+	$current_tag = get_query_tags();
 
 	$browse_menu = array(
 		array(
@@ -203,7 +200,7 @@ function add_site_navigation_menus( $menus ) {
 		array(
 			'label' => __( 'Block themes', 'wporg-themes' ),
 			'url' => home_url( '/tags/full-site-editing/' ),
-			'className' => 'full-site-editing' === $current_tag ? 'current-menu-item' : '',
+			'className' => in_array( 'full-site-editing', $current_tag ) && ! $current_browse ? 'current-menu-item' : '',
 		),
 	);
 
