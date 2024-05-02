@@ -28,6 +28,19 @@ function update_query_total_label( $label, $found_posts ) {
 }
 
 /**
+ * Get the destination for query-filter submission based on the current page.
+ *
+ * @return string
+ */
+function get_filter_action_url() {
+	global $wp;
+	if ( is_author() ) {
+		return home_url( $wp->request );
+	}
+	return home_url( '/' );
+}
+
+/**
  * Provide a list of layout options.
  *
  * @param array $options The options for this filter.
@@ -49,7 +62,7 @@ function get_layouts_options( $options ) {
 		'label' => $label,
 		'title' => __( 'Layout', 'wporg-themes' ),
 		'key' => 'tag_slug__and',
-		'action' => home_url( '/' ),
+		'action' => get_filter_action_url(),
 		'options' => $layouts,
 		'selected' => $selected,
 	);
@@ -77,7 +90,7 @@ function get_features_options( $options ) {
 		'label' => $label,
 		'title' => __( 'Features', 'wporg-themes' ),
 		'key' => 'tag_slug__and',
-		'action' => home_url( '/' ),
+		'action' => get_filter_action_url(),
 		'options' => $features,
 		'selected' => $selected,
 	);
@@ -105,7 +118,7 @@ function get_subjects_options( $options ) {
 		'label' => $label,
 		'title' => __( 'Subjects', 'wporg-themes' ),
 		'key' => 'tag_slug__and',
-		'action' => home_url( '/' ),
+		'action' => get_filter_action_url(),
 		'options' => $subjects,
 		'selected' => $selected,
 	);

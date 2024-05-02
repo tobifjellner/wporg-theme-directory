@@ -52,6 +52,14 @@ add_filter(
 	2000
 );
 
+add_action(
+	'init',
+	function() {
+		// Don't swap author link with w.org profile link.
+		remove_all_filters( 'author_link' );
+	}
+);
+
 /**
  * Temporary fix for permission problem during local install.
  */
@@ -253,17 +261,20 @@ function redirect_term_archives() {
 	global $wp_query, $wp;
 	$url = false;
 	$query_vars = [];
-	$is_browse_url = str_starts_with( $wp->request, 'browse/' );
-	$is_tags_url = str_starts_with( $wp->request, 'tags/' );
+
+	// Return early if we're already on an author or browse page.
+	if ( str_starts_with( $wp->request, 'author/' ) || str_starts_with( $wp->request, 'browse/' ) ) {
+		return;
+	}
 
 	$browse = sanitize_text_field( $wp_query->query['browse'] ?? '' );
 	$terms = array_map( 'sanitize_text_field', get_query_tags() );
 
-	if ( ! empty( $browse ) && ! $is_browse_url ) {
+	if ( ! empty( $browse ) ) {
 		$url = home_url( '/browse/' . $browse . '/' );
 		$query_vars = [ 's', 'tag', 'tag_slug__and' ];
 
-	} else if ( count( $terms ) && ! $is_browse_url && ! $is_tags_url ) {
+	} else if ( count( $terms ) && ! str_starts_with( $wp->request, 'tags/' ) ) {
 		if ( count( $terms ) === 1 ) {
 			$url = get_term_link( $terms[0], 'post_tag' );
 		} else {
