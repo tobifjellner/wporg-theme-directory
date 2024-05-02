@@ -20,6 +20,8 @@
 </div>
 <!-- /wp:group -->
 
+<!-- wp:wporg/theme-status-notice {"align":"wide","style":{"spacing":{"margin":{"top":"var:preset|spacing|30"}}}} /-->
+
 <!-- wp:columns {"align":"wide","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|40"},"margin":{"top":"var:preset|spacing|40"}}}} -->
 <div class="wp-block-columns alignwide" style="margin-top:var(--wp--preset--spacing--40)">
 	<!-- wp:column {"width":"70%","style":{"spacing":{"blockGap":"0"}}} -->
