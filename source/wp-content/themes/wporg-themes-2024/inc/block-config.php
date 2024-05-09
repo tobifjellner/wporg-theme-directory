@@ -170,12 +170,15 @@ function inject_other_filters( $key, $block ) {
  */
 function add_site_navigation_menus( $menus ) {
 	global $wp_query;
+	$current_browse = $wp_query->query['browse'] ?? false;
+	$current_tag = get_query_tags();
 
 	$menu = array();
 
 	$menu[] = array(
 		'label' => __( 'My favorites', 'wporg-themes' ),
 		'url' => '/browse/favorites/',
+		'className' => 'favorites' === $current_browse ? 'current-menu-item' : '',
 	);
 	$menu[] = array(
 		'label' => __( 'Submit a theme', 'wporg-themes' ),
@@ -185,9 +188,6 @@ function add_site_navigation_menus( $menus ) {
 		'label' => __( 'Commercial theme companies', 'wporg-themes' ),
 		'url' => '/commercial/',
 	);
-
-	$current_browse = $wp_query->query['browse'] ?? false;
-	$current_tag = get_query_tags();
 
 	$browse_menu = array(
 		array(

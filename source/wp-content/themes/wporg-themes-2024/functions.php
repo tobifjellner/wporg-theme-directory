@@ -183,6 +183,7 @@ function add_extra_body_class( $classes ) {
 
 /**
  * Switch to the archive.html template on paged requests & other browse tabs.
+ * Show a logged out view if viewing favorites anonymously.
  *
  * @param string[] $templates A list of template candidates, in descending order of priority.
  */
@@ -193,6 +194,11 @@ function use_archive_template_paged( $templates ) {
 	if ( is_paged() || $current_browse ) {
 		array_unshift( $templates, 'archive.html' );
 	}
+
+	if ( 'favorites' === $current_browse && ! get_current_user_id() ) {
+		array_unshift( $templates, 'archive-favorites-anon.html' );
+	}
+
 	return $templates;
 }
 
