@@ -45,3 +45,20 @@
 	inset: 0 auto 0 0;
 	background-color: var(--wp--custom--wporg-ratings-stars--color--fill);
 }
+
+@supports (grid-template-columns: subgrid) {
+	.wp-block-wporg-ratings-bars {
+		display: grid;
+		gap: 4px var(--wp--preset--spacing--10);
+		grid-template-columns: auto 1fr auto;
+
+		.wporg-ratings-bars__bar,
+		.wporg-ratings-bars__bar a {
+			display: grid;
+			grid-column: span 3;
+			grid-template-columns: subgrid;
+			margin-bottom: unset;
+			gap: unset;
+		}
+	}
+}
