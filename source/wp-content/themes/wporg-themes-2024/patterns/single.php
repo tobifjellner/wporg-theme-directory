@@ -10,7 +10,7 @@
 <div class="wp-block-group alignwide">
 	<!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"flex","orientation":"vertical"}} -->
 	<div class="wp-block-group">
-		<!-- wp:post-title {"level":1,"fontSize":"heading-5"} /-->
+		<!-- wp:post-title {"level":1,"fontSize":"heading-3"} /-->
 
 		<!-- wp:post-author-name {"isLink":true} /-->
 	</div>
