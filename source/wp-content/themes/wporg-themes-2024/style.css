@@ -27,13 +27,6 @@
 	box-shadow: 0 0 0 1.5px var(--wp--custom--link--color--text);
 }
 
-:where(main) a:where(:not(.wp-element-button)):focus,
-:where(main) button:where(:not([class*="wp-block-button"])):focus {
-	outline: none;
-	border-radius: 2px;
-	box-shadow: 0 0 0 1.5px var(--wp--custom--link--color--text);
-}
-
 /* Add an aspect-ratio to prevent layout shift. */
 .wp-block-query .wp-block-post-featured-image {
 	aspect-ratio: 4/3;
