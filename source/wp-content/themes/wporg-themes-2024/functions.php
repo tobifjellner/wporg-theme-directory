@@ -179,6 +179,10 @@ function add_extra_body_class( $classes ) {
 		$classes[] = 'wporg-theme-preview';
 	}
 
+	if ( ! empty( $wp_query->query_vars['browse'] ) ) {
+		$classes[] = 'browse-' . $wp_query->query_vars['browse'];
+	}
+
 	return $classes;
 }
 
