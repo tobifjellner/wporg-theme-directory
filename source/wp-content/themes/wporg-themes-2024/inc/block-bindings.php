@@ -40,6 +40,19 @@ function get_meta_block_value( $args, $block ) {
 		return '';
 	}
 
+	$report_url = add_query_arg(
+		urlencode_deep(
+			array_filter(
+				array(
+					'rep-theme'   => "https://wordpress.org/themes/{$theme->slug}/",
+					'rep-subject' => "Reported Theme: {$theme->name}", // Not translated, email subject.
+					'rep-name'    => wp_get_current_user()->user_login,
+				)
+			)
+		),
+		'https://make.wordpress.org/themes/report-theme/'
+	);
+
 	switch ( $args['key'] ) {
 		case 'version':
 			/* translators: %s: Version number. */
@@ -108,22 +121,28 @@ function get_meta_block_value( $args, $block ) {
 			);
 		case 'support-forum-url':
 			return esc_url( get_support_url( $theme->slug ) );
+		case 'support-forum-link':
+			return sprintf(
+				'<a href="%s">%s</a>',
+				esc_url( get_support_url( $theme->slug ) ),
+				__( 'View support forum', 'wporg-themes' )
+			);
 		case 'submit-review-url':
 			return esc_url( get_support_url( $theme->slug . '/reviews/#new-post' ) );
-		case 'report-url':
-			$report_url = add_query_arg(
-				urlencode_deep(
-					array_filter(
-						array(
-							'rep-theme'   => "https://wordpress.org/themes/{$theme->slug}/",
-							'rep-subject' => "Reported Theme: {$theme->name}", // Not translated, email subject.
-							'rep-name'    => wp_get_current_user()->user_login,
-						)
-					)
-				),
-				'https://make.wordpress.org/themes/report-theme/'
+		case 'submit-review-link':
+			return sprintf(
+				'<a href="%s">%s</a>',
+				esc_url( get_support_url( $theme->slug . '/reviews/#new-post' ) ),
+				__( 'Add my review', 'wporg-themes' )
 			);
+		case 'report-url':
 			return esc_url( $report_url );
+		case 'report-link':
+			return sprintf(
+				'<a href="%s">%s</a>',
+				esc_url( $report_url ),
+				__( 'Report this theme', 'wporg-themes' )
+			);
 		case 'translate-link':
 			return sprintf(
 				'<a href="%s">%s</a>',

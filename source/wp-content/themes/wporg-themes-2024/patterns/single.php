@@ -125,13 +125,9 @@
 
 		<!-- wp:wporg/ratings-bars /-->
 
-		<!-- wp:buttons {"style":{"spacing":{"margin":{"top":"var:preset|spacing|10"}}}} -->
-		<div class="wp-block-buttons" style="margin-top:var(--wp--preset--spacing--10)">
-			<!-- wp:button {"className":"is-style-outline is-small","metadata":{"bindings":{"url":{"source":"wporg-themes/meta","args":{"key":"submit-review-url"}}}}} -->
-			<div class="wp-block-button is-style-outline is-small"><a class="wp-block-button__link wp-element-button"><?php esc_html_e( 'Add my review', 'wporg-themes' ); ?></a></div>
-			<!-- /wp:button -->
-		</div>
-		<!-- /wp:buttons -->
+		<!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"var:preset|spacing|10"}}},"metadata":{"bindings":{"content":{"source":"wporg-themes/meta","args":{"key":"submit-review-link"}}}}} -->
+		<p style="margin-top:var(--wp--preset--spacing--10)">Add my review</p>
+		<!-- /wp:paragraph -->
 
 		<!-- wp:heading {"fontSize":"heading-4"} -->
 		<h2 class="wp-block-heading has-heading-4-font-size"><?php esc_html_e( 'Support', 'wporg-themes' ); ?></h2>
@@ -141,13 +137,9 @@
 		<p><?php esc_html_e( 'Got something to say? Need help?', 'wporg-themes' ); ?></p>
 		<!-- /wp:paragraph -->
 
-		<!-- wp:buttons {"style":{"spacing":{"margin":{"top":"var:preset|spacing|10"}}}} -->
-		<div class="wp-block-buttons" style="margin-top:var(--wp--preset--spacing--10)">
-			<!-- wp:button {"className":"is-style-outline is-small","metadata":{"bindings":{"url":{"source":"wporg-themes/meta","args":{"key":"support-forum-url"}}}}} -->
-			<div class="wp-block-button is-style-outline is-small"><a class="wp-block-button__link wp-element-button"><?php esc_html_e( 'View support forum', 'wporg-themes' ); ?></a></div>
-			<!-- /wp:button -->
-		</div>
-		<!-- /wp:buttons -->
+		<!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"var:preset|spacing|10"}}},"metadata":{"bindings":{"content":{"source":"wporg-themes/meta","args":{"key":"support-forum-link"}}}}} -->
+		<p style="margin-top:var(--wp--preset--spacing--10)">View support forum</p>
+		<!-- /wp:paragraph -->
 
 		<!-- wp:heading {"fontSize":"heading-4"} -->
 		<h2 class="wp-block-heading has-heading-4-font-size"><?php esc_html_e( 'Report', 'wporg-themes' ); ?></h2>
@@ -157,13 +149,9 @@
 		<p><?php esc_html_e( 'Does this theme have major issues?', 'wporg-themes' ); ?></p>
 		<!-- /wp:paragraph -->
 
-		<!-- wp:buttons {"style":{"spacing":{"margin":{"top":"var:preset|spacing|10"}}}} -->
-		<div class="wp-block-buttons" style="margin-top:var(--wp--preset--spacing--10)">
-			<!-- wp:button {"className":"is-style-outline is-small","metadata":{"bindings":{"url":{"source":"wporg-themes/meta","args":{"key":"report-url"}}}}} -->
-			<div class="wp-block-button is-style-outline is-small"><a class="wp-block-button__link wp-element-button"><?php esc_html_e( 'Report this theme', 'wporg-themes' ); ?></a></div>
-			<!-- /wp:button -->
-		</div>
-		<!-- /wp:buttons -->
+		<!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"var:preset|spacing|10"}}},"metadata":{"bindings":{"content":{"source":"wporg-themes/meta","args":{"key":"report-link"}}}}} -->
+		<p style="margin-top:var(--wp--preset--spacing--10)">Report this theme</p>
+		<!-- /wp:paragraph -->
 
 		<!-- wp:heading {"fontSize":"heading-4"} -->
 		<h2 class="wp-block-heading has-heading-4-font-size"><?php esc_html_e( 'Translations', 'wporg-themes' ); ?></h2>
