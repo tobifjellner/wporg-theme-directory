@@ -18,25 +18,13 @@
 		<!-- /wp:group -->
 	
 		<!-- wp:post-excerpt {"fontSize":"small"} /-->
-	
-		<!-- wp:wporg/theme-style-variations-items /-->
 
-		<!-- wp:wporg/theme-patterns {"showAll":true} /-->
-
-		<!-- wp:spacer {"height":"0"} -->
-		<div style="height:0" aria-hidden="true" class="wp-block-spacer"></div>
-		<!-- /wp:spacer -->
-
-		<!-- wp:group {"style":{"position":{"type":"sticky","top":"0px"},"spacing":{"padding":{"bottom":"var:preset|spacing|20"}},"border":{"top":{"color":"var:preset|color|white-opacity-15","style":"solid","width":"1px"},"right":{},"bottom":{},"left":{}}},"className":"wporg-theme-preview__download","layout":{"type":"constrained"}} -->
-		<div class="wp-block-group wporg-theme-preview__download" style="border-top-color:var(--wp--preset--color--white-opacity-15);border-top-style:solid;border-top-width:1px;padding-bottom:var(--wp--preset--spacing--20)">
-			<!-- wp:spacer {"height":"0"} -->
-			<div style="height:0" aria-hidden="true" class="wp-block-spacer"></div>
-			<!-- /wp:spacer -->
-			
+		<!-- wp:group {"className":"wporg-theme-preview__download","layout":{"type":"constrained"}} -->
+		<div class="wp-block-group wporg-theme-preview__download">			
 			<!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
 			<div class="wp-block-buttons">
-				<!-- wp:button {"width":100,"metadata":{"bindings":{"url":{"source":"wporg-themes/meta","args":{"key":"download-url"}},"text":{"source":"wporg-themes/meta","args":{"key":"download-text"}}}},"className":"is-style-fill-on-dark"} -->
-				<div class="wp-block-button has-custom-width wp-block-button__width-100 is-style-fill-on-dark"><a class="wp-block-button__link wp-element-button">Download</a></div>
+				<!-- wp:button {"width":100,"metadata":{"bindings":{"url":{"source":"wporg-themes/meta","args":{"key":"download-url"}},"text":{"source":"wporg-themes/meta","args":{"key":"download-text"}}}},"className":"is-style-fill-on-dark is-small"} -->
+				<div class="wp-block-button has-custom-width wp-block-button__width-100 is-style-fill-on-dark is-small"><a class="wp-block-button__link wp-element-button">Download</a></div>
 				<!-- /wp:button -->
 			</div>
 			<!-- /wp:buttons -->
@@ -46,6 +34,11 @@
 			<!-- /wp:paragraph -->
 		</div>
 		<!-- /wp:group -->
+	
+		<!-- wp:wporg/theme-style-variations-items {"style":{"spacing":{"margin":{"top":"var:preset|spacing|40"}}}} /-->
+
+		<!-- wp:wporg/theme-patterns {"showAll":true,"style":{"spacing":{"margin":{"top":"var:preset|spacing|40"}}}} /-->
+
 	<!-- /wp:wporg/theme-previewer -->
 </main>
 <!-- /wp:group -->

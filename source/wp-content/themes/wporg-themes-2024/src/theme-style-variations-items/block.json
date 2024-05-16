@@ -10,7 +10,10 @@
 	"textdomain": "wporg",
 	"attributes": {},
 	"supports": {
-		"html": false
+		"html": false,
+		"spacing": {
+			"margin": [ "top", "bottom" ]
+		}
 	},
 	"usesContext": [ "postId", "postType" ],
 	"editorScript": "file:./index.js",

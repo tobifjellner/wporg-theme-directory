@@ -16,19 +16,13 @@ if ( ! $count ) {
 	return '';
 }
 
-$label = sprintf(
-	/* translators: Heading for style variations, %s is the number of styles. */
-	_n( 'Style variations (%s)', 'Style variations (%s)', $count, 'wporg-themes' ),
-	$count
-);
-
 ?>
 <div
 	data-wp-interactive="wporg/themes/style-variations"
 	<?php echo get_block_wrapper_attributes(); // phpcs:ignore ?>
 >
 	<div class="wporg-theme-style-variations__heading">
-		<h2><?php echo esc_html( $label ); ?></h2>
+		<h2><?php esc_html_e( 'Style variations', 'wporg-themes' ); ?></h2>
 	</div>
 
 	<div class="wporg-theme-style-variations__grid">
