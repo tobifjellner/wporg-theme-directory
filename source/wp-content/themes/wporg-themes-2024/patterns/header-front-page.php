@@ -5,6 +5,19 @@
  * Inserter: no
  */
 
+$count = wp_count_posts( 'repopackage' )->publish;
+$count = floor( $count / 1000 ) * 1000;
+$description = sprintf(
+	/* Translators: Total number of themes, rounded to thousands (ex, 12,000). */
+	_n(
+		'Over %s free themes to customize your WordPress site.',
+		'Over %s free themes to customize your WordPress site.',
+		$count,
+		'wporg-themes'
+	),
+	number_format_i18n( $count )
+);
+
 ?>
 <!-- wp:wporg/global-header {"style":{"border":{"bottom":{"color":"var:preset|color|white-opacity-15","style":"solid","width":"1px"}}}} /-->
 
@@ -27,7 +40,7 @@
 		<!-- /wp:heading -->
 
 		<!-- wp:paragraph {"style":{"typography":{"lineHeight":"2.3"}},"textColor":"white"} -->
-		<p class="has-white-color has-text-color" style="line-height:2.3"><?php esc_html_e( 'Over 10,000 free themes to customize your WordPress site', 'wporg-themes' ); ?></p>
+		<p class="has-white-color has-text-color" style="line-height:2.3"><?php echo esc_html( $description ); ?></p>
 		<!-- /wp:paragraph -->
 	
 	</div>
