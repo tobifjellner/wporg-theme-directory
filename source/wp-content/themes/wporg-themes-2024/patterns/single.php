@@ -48,33 +48,7 @@
 
 		<!-- wp:wporg/child-theme-notice /-->
 
-		<!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"flex","orientation":"vertical"}} -->
-		<div class="wp-block-group">
-			<!-- wp:paragraph {"metadata":{"bindings":{"content":{"source":"wporg-themes/meta","args":{"key":"version"}}}}} -->
-			<p>Version</p>
-			<!-- /wp:paragraph -->
-
-			<!-- wp:paragraph {"metadata":{"bindings":{"content":{"source":"wporg-themes/meta","args":{"key":"last-updated"}}}}} -->
-			<p>Last updated</p>
-			<!-- /wp:paragraph -->
-
-			<!-- wp:paragraph {"metadata":{"bindings":{"content":{"source":"wporg-themes/meta","args":{"key":"active-installs"}}}}} -->
-			<p>Active Installations</p>
-			<!-- /wp:paragraph -->
-
-			<!-- wp:paragraph {"metadata":{"bindings":{"content":{"source":"wporg-themes/meta","args":{"key":"requires-wp"}}}}} -->
-			<p>WordPress Version</p>
-			<!-- /wp:paragraph -->
-
-			<!-- wp:paragraph {"metadata":{"bindings":{"content":{"source":"wporg-themes/meta","args":{"key":"requires-php"}}}}} -->
-			<p>PHP Version</p>
-			<!-- /wp:paragraph -->
-
-			<!-- wp:paragraph {"metadata":{"bindings":{"content":{"source":"wporg-themes/meta","args":{"key":"theme-link"}}}}} -->
-			<p>Theme Homepage</p>
-			<!-- /wp:paragraph -->
-		</div>
-		<!-- /wp:group -->
+		<!-- wp:wporg/meta-list {"style":{"spacing":{"margin":{"top":"var:preset|spacing|30"}}}} /-->
 
 	</div>
 	<!-- /wp:column -->

@@ -54,16 +54,6 @@ function get_meta_block_value( $args, $block ) {
 	);
 
 	switch ( $args['key'] ) {
-		case 'version':
-			/* translators: %s: Version number. */
-			return sprintf( __( 'Version: %s', 'wporg-themes' ), '<strong>' . esc_html( $theme->version ) . '</strong>' );
-		case 'last-updated':
-			return sprintf(
-				/* translators: %s: update date. */
-				__( 'Last updated: %s', 'wporg-themes' ),
-				/* translators: localized date format, see http://php.net/date */
-				'<strong>' . date_i18n( _x( 'F j, Y', 'last update date format', 'wporg-themes' ), strtotime( $theme->last_updated ) ) . '</strong>'
-			);
 		case 'active-installs':
 			$active_installs = $theme->active_installs;
 			if ( $active_installs < 10 ) {
@@ -78,35 +68,6 @@ function get_meta_block_value( $args, $block ) {
 				__( 'Active Installations: %s', 'wporg-themes' ),
 				'<strong>' . $active_installs . '</strong>'
 			);
-		case 'requires-wp':
-			if ( ! empty( $theme->requires ) ) {
-				return sprintf(
-					// translators: %s: "version or higher" string.
-					__( 'WordPress Version: %s', 'wporg-themes' ),
-					// translators: %s: version number.
-					'<strong>' . sprintf( __( '%s or higher', 'wporg-themes' ), esc_html( $theme->requires ) ) . '</strong>'
-				);
-			}
-			return '';
-		case 'requires-php':
-			if ( ! empty( $theme->requires_php ) ) {
-				return sprintf(
-					// translators: %s: "version or higher" string.
-					__( 'PHP Version: %s', 'wporg-themes' ),
-					// translators: %s: version number.
-					'<strong>' . sprintf( __( '%s or higher', 'wporg-themes' ), esc_html( $theme->requires_php ) ) . '</strong>'
-				);
-			}
-			return '';
-		case 'theme-link':
-			if ( ! empty( $theme->theme_url ) ) {
-				return sprintf(
-					'<a href="%s">%s</a>',
-					esc_url( $theme->theme_url ),
-					__( 'Theme Homepage', 'wporg-themes' )
-				);
-			}
-			return '';
 		case 'preview-url':
 			return esc_url( untrailingslashit( get_permalink( $p ) ) . '/preview/' );
 		case 'download-url':

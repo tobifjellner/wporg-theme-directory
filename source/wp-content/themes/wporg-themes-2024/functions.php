@@ -10,6 +10,7 @@ require_once( __DIR__ . '/inc/rest-api.php' );
 require_once( __DIR__ . '/src/business-model-notice/index.php' );
 require_once( __DIR__ . '/src/child-theme-notice/index.php' );
 require_once( __DIR__ . '/src/favorite-button/index.php' );
+require_once( __DIR__ . '/src/meta-list/index.php' );
 require_once( __DIR__ . '/src/ratings-bars/index.php' );
 require_once( __DIR__ . '/src/ratings-stars/index.php' );
 require_once( __DIR__ . '/src/theme-available-translations/index.php' );
