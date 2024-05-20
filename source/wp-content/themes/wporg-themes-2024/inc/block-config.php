@@ -16,6 +16,7 @@ add_action( 'wporg_query_filter_in_form', __NAMESPACE__ . '\inject_other_filters
 add_filter( 'wporg_block_navigation_menus', __NAMESPACE__ . '\add_site_navigation_menus' );
 add_filter( 'render_block_wporg/link-wrapper', __NAMESPACE__ . '\inject_permalink_link_wrapper' );
 add_filter( 'render_block_wporg/language-suggest', __NAMESPACE__ . '\inject_language_suggest_endpoint' );
+add_filter( 'render_block_core/search', __NAMESPACE__ . '\inject_browse_search_block' );
 
 /**
  * Update the query total label to reflect "patterns" found.
@@ -262,4 +263,26 @@ function inject_language_suggest_endpoint( $block_content ) {
 	}
 	$html->set_attribute( 'data-endpoint', $endpoint_url );
 	return $html->get_updated_html();
+}
+
+/**
+ * Inject the current browse filter into the search form.
+ *
+ * @param string $block_content
+ *
+ * @return string
+ */
+function inject_browse_search_block( $block_content ) {
+	global $wp_query;
+	$inputs = '';
+	$current_browse = $wp_query->query['browse'] ?? false;
+	if ( in_array( $current_browse, [ 'community', 'commercial' ] ) ) {
+		$inputs .= sprintf( '<input type="hidden" name="browse" value="%s" />', esc_attr( $current_browse ) );
+	}
+
+	if ( isset( $wp_query->query['tag'] ) ) {
+		$inputs .= sprintf( '<input type="hidden" name="tag" value="%s" />', esc_attr( $wp_query->query['tag'] ) );
+	}
+
+	return str_replace( '</form>', $inputs . '</form>', $block_content );
 }
