@@ -32,6 +32,7 @@ add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\enqueue_assets' );
 add_filter( 'post_thumbnail_html', __NAMESPACE__ . '\post_thumbnail_html', 10, 5 );
 add_action( 'body_class', __NAMESPACE__ . '\add_extra_body_class' );
 add_filter( 'frontpage_template_hierarchy', __NAMESPACE__ . '\use_archive_template_paged' );
+add_filter( 'search_template_hierarchy', __NAMESPACE__ . '\use_archive_template_paged' );
 add_action( 'single_template_hierarchy', __NAMESPACE__ . '\load_theme_preview' );
 add_filter( 'query_loop_block_query_vars', __NAMESPACE__ . '\modify_query_loop_block_query_vars', 10, 2 );
 add_filter( 'post_type_link', __NAMESPACE__ . '\update_theme_shop_permalink', 10, 2 );
@@ -199,7 +200,7 @@ function use_archive_template_paged( $templates ) {
 	global $wp_query;
 	$current_browse = $wp_query->query['browse'] ?? false;
 
-	if ( is_paged() || $current_browse ) {
+	if ( is_paged() || $current_browse || is_search() ) {
 		array_unshift( $templates, 'archive.html' );
 	}
 
