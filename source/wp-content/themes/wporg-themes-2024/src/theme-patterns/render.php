@@ -71,7 +71,7 @@ $encoded_state = wp_json_encode( $init_state );
 	</div>
 
 	<?php if ( count( $patterns ) > $initial_count ) : ?>
-	<div class="wporg-theme-patterns__button wp-block-button is-style-text is-small">
+	<div class="wporg-theme-patterns__button wp-block-button is-style-outline is-small">
 		<button
 			class="wp-block-button__link wp-element-button"
 			data-wp-on--click="actions.showAll"

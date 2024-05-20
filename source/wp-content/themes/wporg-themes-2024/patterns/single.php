@@ -57,27 +57,35 @@
 
 <!-- wp:columns {"align":"wide","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|40"},"margin":{"top":"var:preset|spacing|40"}}}} -->
 <div class="wp-block-columns alignwide" style="margin-top:var(--wp--preset--spacing--40)">
-	<!-- wp:column {"width":"70%"} -->
+	<!-- wp:column {"width":"70%","style":{"spacing":{"blockGap":"var:preset|spacing|30"}}} -->
 	<div class="wp-block-column" style="flex-basis:70%">
 		<!-- wp:post-content /-->
 
-		<!-- wp:heading {"fontSize":"heading-4"} -->
-		<h2 class="wp-block-heading has-heading-4-font-size"><?php esc_html_e( 'Features', 'wporg-themes' ); ?></h2>
-		<!-- /wp:heading -->
+		<!-- wp:group -->
+		<div class="wp-block-group">
+			<!-- wp:heading {"fontSize":"heading-4"} -->
+			<h2 class="wp-block-heading has-heading-4-font-size"><?php esc_html_e( 'Features', 'wporg-themes' ); ?></h2>
+			<!-- /wp:heading -->
 
-		<!-- wp:post-terms {"term":"post_tag"} /-->
+			<!-- wp:post-terms {"term":"post_tag"} /-->
+		</div>
+		<!-- /wp:group -->
 
 		<!-- wp:wporg/theme-patterns /-->
 
-		<!-- wp:heading {"fontSize":"heading-4"} -->
-		<h2 class="wp-block-heading has-heading-4-font-size"><?php esc_html_e( 'Downloads per day', 'wporg-themes' ); ?></h2>
-		<!-- /wp:heading -->
+		<!-- wp:group -->
+		<div class="wp-block-group">
+			<!-- wp:heading {"fontSize":"heading-4"} -->
+			<h2 class="wp-block-heading has-heading-4-font-size"><?php esc_html_e( 'Downloads per day', 'wporg-themes' ); ?></h2>
+			<!-- /wp:heading -->
 
-		<!-- wp:paragraph {"metadata":{"bindings":{"content":{"source":"wporg-themes/meta","args":{"key":"active-installs"}}}}} -->
-		<p>Active Installations</p>
-		<!-- /wp:paragraph -->
+			<!-- wp:paragraph {"metadata":{"bindings":{"content":{"source":"wporg-themes/meta","args":{"key":"active-installs"}}}}} -->
+			<p>Active Installations</p>
+			<!-- /wp:paragraph -->
 
-		<!-- wp:wporg/theme-downloads /-->
+			<!-- wp:wporg/theme-downloads /-->
+		</div>
+		<!-- /wp:group -->
 
 		<!-- wp:wporg/theme-settings /-->
 	</div>
