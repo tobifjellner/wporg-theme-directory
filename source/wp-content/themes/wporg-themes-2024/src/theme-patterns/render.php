@@ -19,15 +19,9 @@ function get_pattern_preview_block( $pattern, $is_overflow = false ) {
 		// phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase -- Name comes from API.
 		'viewportHeight' => isset( $pattern->viewportWidth ) ? $pattern->viewportWidth * 0.75 : 900,
 		'fullPage' => false,
+		'isHidden' => $is_overflow,
 	);
-	$block_markup = do_blocks( sprintf( '<!-- wp:wporg/screenshot-preview %s /-->', wp_json_encode( $args ) ) );
-
-	if ( $is_overflow ) {
-		// Wrap the block in a div to avoid conflicting with the screenshot store.
-		$block_markup = '<div class="wporg-theme-patterns__overflow" data-wp-style--display="state.displayCSS">' . $block_markup . '</div>';
-	}
-
-	return $block_markup;
+	return do_blocks( sprintf( '<!-- wp:wporg/screenshot-preview %s /-->', wp_json_encode( $args ) ) );
 }
 
 $current_post_id = $block->context['postId'];
