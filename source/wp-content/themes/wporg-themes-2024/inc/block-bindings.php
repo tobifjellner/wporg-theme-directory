@@ -114,13 +114,13 @@ function get_meta_block_value( $args, $block ) {
 			return sprintf(
 				'<a href="%s" rel="nofollow">%s</a>',
 				esc_url( "https://themes.trac.wordpress.org/log/{$theme->slug}" ),
-				__( 'Development Log', 'wporg-themes' )
+				__( 'Development log', 'wporg-themes' )
 			);
 		case 'trac-svn-link':
 			return sprintf(
 				'<a href="%s" rel="nofollow">%s</a>',
 				esc_url( "https://themes.svn.wordpress.org/{$theme->slug}" ),
-				__( 'Subversion Repository', 'wporg-themes' )
+				__( 'Subversion repository', 'wporg-themes' )
 			);
 		case 'trac-browse-link':
 			return sprintf(
@@ -132,7 +132,7 @@ function get_meta_block_value( $args, $block ) {
 			return sprintf(
 				'<a href="%s" rel="nofollow">%s</a>',
 				esc_url( "https://themes.trac.wordpress.org/query?keywords=~theme-{$theme->slug}" ),
-				__( 'Trac Tickets', 'wporg-themes' )
+				__( 'Trac tickets', 'wporg-themes' )
 			);
 		case 'zip-name':
 			$filename = basename( $theme->download_link );
