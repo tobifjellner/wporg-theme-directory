@@ -7,9 +7,11 @@ use function WordPressdotorg\Theme\Theme_Directory_2024\get_theme_patterns;
  */
 function get_pattern_preview_block( $pattern, $is_overflow = false ) {
 	$preview_link = add_query_arg( 'pattern_name', $pattern->name, $pattern->preview_base );
+	$cache_buster = '20240522'; // To break out of cached image.
+	$view_url = add_query_arg( 'v', $cache_buster, $pattern->preview_link );
 
 	$args = array(
-		'src' => $pattern->preview_link,
+		'src' => $view_url,
 		// translators: %s pattern name.
 		'alt' => sprintf( __( 'Pattern: %s', 'wporg-themes' ), $pattern->title ),
 		'href' => $preview_link,
