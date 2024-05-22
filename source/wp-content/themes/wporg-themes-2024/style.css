@@ -40,3 +40,12 @@
 body.browse-popular:not(.paged) .wp-block-wporg-query-total {
 	display: none;
 }
+
+/*
+ * Support nested full-width containers. This can be removed once we update to
+ * Gutenberg 18.2+ and get https://github.com/WordPress/gutenberg/pull/60716.
+ */
+:where(main > .alignfull > .alignfull) {
+	margin-right: calc(-1 * var(--wp--preset--spacing--edge-space));
+	margin-left: calc(-1 * var(--wp--preset--spacing--edge-space));
+}
