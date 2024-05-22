@@ -54,12 +54,12 @@ function render( $attributes, $content, $block ) {
 	$markup = '';
 
 	if ( $is_commercial ) {
-		$heading = __( 'Commercial Theme', 'wporg-themes' );
+		$heading = __( 'Commercial theme', 'wporg-themes' );
 		$content = __( 'This theme is free but offers additional paid commercial upgrades or support.', 'wporg-themes' );
 		$url = get_post_meta( $theme_post->ID, 'external_support_url', true );
 		$link_text = __( 'View support', 'wporg-themes' );
 	} else {
-		$heading = __( 'Community Theme', 'wporg-themes' );
+		$heading = __( 'Community theme', 'wporg-themes' );
 		$content = __( 'This theme is developed and supported by a community.', 'wporg-themes' );
 		$url = get_post_meta( $theme_post->ID, 'external_repository_url', true );
 		$link_text = __( 'Contribute to this theme', 'wporg-themes' );
@@ -72,7 +72,7 @@ function render( $attributes, $content, $block ) {
 	$markup .= '<!-- wp:paragraph --><p>';
 	$markup .= esc_html( $content );
 	if ( $url ) {
-		$markup .= '<br /><a href="' . esc_url( $url ) . '">' . esc_html( $link_text ) . '</a>'; //nofollow
+		$markup .= '<br /><a href="' . esc_url( $url ) . '" class="external-link">' . esc_html( $link_text ) . '</a>'; //nofollow
 	}
 	$markup .= '</p><!-- /wp:paragraph -->';
 
