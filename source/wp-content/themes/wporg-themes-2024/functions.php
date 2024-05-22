@@ -364,6 +364,33 @@ function get_query_tags() {
 }
 
 /**
+ * Given a set of tag slugs, fetch the labels from the feature list.
+ *
+ * Using the featured list ensures the label will be translated (if available).
+ * If a tag is not found, it will be silently filtered out.
+ *
+ * @param string[] $tags List of tags.
+ *
+ * @return array
+ */
+function get_tag_labels( $tags ) {
+	$features = wporg_themes_get_feature_list( 'active' );
+	$labels = array_map(
+		function( $tag ) use ( $features ) {
+			foreach ( $features as $list ) {
+				if ( isset( $list[ $tag ] ) ) {
+					return $list[ $tag ];
+				}
+			}
+			return false;
+		},
+		$tags
+	);
+
+	return array_filter( $labels );
+}
+
+/**
  * This is a copy of get_theme_feature_list(), but with the wporg-themes text domain
  *
  * @param string $include Optional. Type of list: 'active', 'deprecated' or 'all'. Default 'active'.

@@ -5,8 +5,8 @@
 
 namespace WordPressdotorg\Theme\Theme_Directory_2024\Block_Config;
 
-use WP_HTML_Tag_Processor;
-use function WordPressdotorg\Theme\Theme_Directory_2024\{ get_query_tags, wporg_themes_get_feature_list };
+use WP_HTML_Tag_Processor, WP_Block_Supports;
+use function WordPressdotorg\Theme\Theme_Directory_2024\{ get_query_tags, get_tag_labels, wporg_themes_get_feature_list };
 
 add_filter( 'wporg_query_total_label', __NAMESPACE__ . '\update_query_total_label', 10, 2 );
 add_filter( 'wporg_query_filter_options_layouts', __NAMESPACE__ . '\get_layouts_options' );
@@ -17,6 +17,7 @@ add_filter( 'wporg_block_navigation_menus', __NAMESPACE__ . '\add_site_navigatio
 add_filter( 'render_block_wporg/link-wrapper', __NAMESPACE__ . '\inject_permalink_link_wrapper' );
 add_filter( 'render_block_wporg/language-suggest', __NAMESPACE__ . '\inject_language_suggest_endpoint' );
 add_filter( 'render_block_core/search', __NAMESPACE__ . '\inject_browse_search_block' );
+add_filter( 'render_block_core/query-title', __NAMESPACE__ . '\update_archive_title', 10, 3 );
 
 /**
  * Update the query total label to reflect "patterns" found.
@@ -285,4 +286,71 @@ function inject_browse_search_block( $block_content ) {
 	}
 
 	return str_replace( '</form>', $inputs . '</form>', $block_content );
+}
+
+/**
+ * Update the archive title for all filter views.
+ *
+ * @param string   $block_content The block content.
+ * @param array    $block         The full block, including name and attributes.
+ * @param WP_Block $instance      The block instance.
+ */
+function update_archive_title( $block_content, $block, $instance ) {
+	global $wp_query;
+	$attributes = $block['attrs'];
+
+	if ( isset( $attributes['type'] ) && 'filter' === $attributes['type'] ) {
+		// Skip output if there are no results. The `query-no-results` has an h1.
+		if ( ! $wp_query->found_posts ) {
+			return '';
+		}
+
+		$author = isset( $wp_query->query['author_name'] ) ? get_user_by( 'slug', $wp_query->query['author_name'] ) : false;
+		$current_browse = $wp_query->query['browse'] ?? false;
+		$tags = get_query_tags();
+
+		if ( is_front_page() && ! $current_browse && ! is_paged() ) {
+			return '';
+		}
+
+		if ( $author ) {
+			// translators: %s Author name.
+			$title = sprintf( __( 'Author: %s', 'wporg-themes' ), $author->display_name );
+		} else if ( is_search() ) {
+			$title = __( 'Search results', 'wporg-themes' );
+		} else if ( ! empty( $tags ) ) {
+			$labels = get_tag_labels( $tags );
+			// translators: %s List of applied tags.
+			$title = sprintf( __( 'Themes: %s', 'wporg-themes' ), wp_sprintf_l( '%l', $labels ) );
+		} else if ( 'community' === $current_browse ) {
+			$title = __( 'Community themes', 'wporg-themes' );
+		} else if ( 'commercial' === $current_browse ) {
+			$title = __( 'Commercial themes', 'wporg-themes' );
+		} else if ( 'new' === $current_browse ) {
+			$title = __( 'Latest themes', 'wporg-themes' );
+		} else if ( 'updated' === $current_browse ) {
+			$title = __( 'Recently updated themes', 'wporg-themes' );
+		} else if ( 'favorites' === $current_browse ) {
+			$title = __( 'My favorites', 'wporg-themes' );
+		} else {
+			$title = __( 'All themes', 'wporg-themes' );
+		}
+
+		$tag_name           = isset( $attributes['level'] ) ? 'h' . (int) $attributes['level'] : 'h1';
+		$align_class_name   = empty( $attributes['textAlign'] ) ? '' : "has-text-align-{$attributes['textAlign']}";
+
+		// Required to prevent `block_to_render` from being null in `get_block_wrapper_attributes`.
+		$parent = WP_Block_Supports::$block_to_render;
+		WP_Block_Supports::$block_to_render = $block;
+		$wrapper_attributes = get_block_wrapper_attributes( array( 'class' => $align_class_name ) );
+		WP_Block_Supports::$block_to_render = $parent;
+
+		return sprintf(
+			'<%1$s %2$s>%3$s</%1$s>',
+			$tag_name,
+			$wrapper_attributes,
+			$title
+		);
+	}
+	return $block_content;
 }
