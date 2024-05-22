@@ -9,7 +9,7 @@
 <!-- wp:group -->
 <div class="wp-block-group">
 	<!-- wp:heading {"level":1,"style":{"spacing":{"margin":{"bottom":"var:preset|spacing|30"}}}} -->
-	<h1 class="wp-block-heading" style="margin-bottom:var(--wp--preset--spacing--30)"><?php esc_html_e( 'Submit Your Theme or Theme Update to the Directory', 'wporg-themes' ); ?></h1>
+	<h1 class="wp-block-heading" style="margin-bottom:var(--wp--preset--spacing--30)"><?php esc_html_e( 'Submit your theme or theme update to the directory', 'wporg-themes' ); ?></h1>
 	<!-- /wp:heading -->
 
 	<!-- wp:paragraph -->
