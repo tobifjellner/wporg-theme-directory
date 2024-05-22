@@ -41,6 +41,18 @@ body.browse-popular:not(.paged) .wp-block-wporg-query-total {
 	display: none;
 }
 
+/* Both blocks are in the local header, but only one should be shown at any given time. */
+body.blog .wp-block-wporg-local-navigation-bar .wp-block-post-title,
+body.archive .wp-block-wporg-local-navigation-bar .wp-block-post-title,
+body.search .wp-block-wporg-local-navigation-bar .wp-block-post-title {
+	display: none;
+}
+
+body.single .wp-block-wporg-local-navigation-bar .wp-block-query-title,
+body.page .wp-block-wporg-local-navigation-bar .wp-block-query-title {
+	display: none;
+}
+
 /*
  * Support nested full-width containers. This can be removed once we update to
  * Gutenberg 18.2+ and get https://github.com/WordPress/gutenberg/pull/60716.
