@@ -34,8 +34,8 @@
 	<div class="wp-block-column" style="flex-basis:30%">
 		<!-- wp:wporg/business-model-notice /-->
 
-		<!-- wp:buttons {"layout":{"type":"flex"}} -->
-		<div class="wp-block-buttons">
+		<!-- wp:buttons {"layout":{"type":"flex"},"className":"wporg-theme-actions"} -->
+		<div class="wp-block-buttons wporg-theme-actions">
 			<!-- wp:button {"className":"is-style-outline","metadata":{"bindings":{"url":{"source":"wporg-themes/meta","args":{"key":"preview-url"}}}}} -->
 			<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button"><?php esc_html_e( 'Preview', 'wporg-themes' ); ?></a></div>
 			<!-- /wp:button -->
