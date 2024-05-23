@@ -320,8 +320,7 @@ function update_archive_title( $block_content, $block, $instance ) {
 			$title = __( 'Search results', 'wporg-themes' );
 		} else if ( ! empty( $tags ) ) {
 			$labels = get_tag_labels( $tags );
-			// translators: %s List of applied tags.
-			$title = sprintf( __( 'Themes: %s', 'wporg-themes' ), wp_sprintf_l( '%l', $labels ) );
+			$title = wp_sprintf_l( '%l', $labels );
 		} else if ( 'community' === $current_browse ) {
 			$title = __( 'Community themes', 'wporg-themes' );
 		} else if ( 'commercial' === $current_browse ) {
