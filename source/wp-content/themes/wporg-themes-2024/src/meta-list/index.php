@@ -82,7 +82,7 @@ function render( $attributes, $content, $block ) {
 			if ( 'theme-link' === $field['key'] ) {
 				$list_items[] = sprintf(
 					'<li class="is-meta-%1$s">
-						<a href="%2$s">%3$s</a>
+						<a href="%2$s" class="external-link">%3$s</a>
 					</li>',
 					$field['key'],
 					esc_url( $value ),
