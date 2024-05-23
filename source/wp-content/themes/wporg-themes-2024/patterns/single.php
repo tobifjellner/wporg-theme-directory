@@ -8,7 +8,7 @@
 ?>
 <!-- wp:group {"align":"wide","layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between"}} -->
 <div class="wp-block-group alignwide">
-	<!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"flex","orientation":"vertical"}} -->
+	<!-- wp:group {"style":{"spacing":{"blockGap":"5px"}},"layout":{"type":"flex","orientation":"vertical"}} -->
 	<div class="wp-block-group">
 		<!-- wp:post-title {"level":1,"fontSize":"heading-3"} /-->
 
