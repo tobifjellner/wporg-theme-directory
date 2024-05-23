@@ -20,11 +20,21 @@
 }
 
 /* Add default focus style. */
-:where(main) a:where(:not(.wp-element-button)):focus,
+:where(main) a:where(:not(.wp-element-button,.wp-block-wporg-link-wrapper)):focus,
 :where(main) button:where(:not([class*="wp-block-button"])):focus {
 	outline: none;
 	border-radius: 2px;
 	box-shadow: 0 0 0 1.5px var(--wp--custom--link--color--text);
+}
+
+/* Keep the border radius on grid items focus. */
+.wp-block-wporg-link-wrapper:focus-visible {
+	border-radius: 2px;
+}
+
+/* Add hover state to the grid items. */
+.wp-block-wporg-link-wrapper:hover .has-border-color {
+	border-color: var(--wp--preset--color--charcoal-1) !important;
 }
 
 /* Add an aspect-ratio to prevent layout shift. */
