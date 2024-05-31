@@ -4,6 +4,7 @@ namespace WordPressdotorg\Theme\Theme_Directory_2024;
 
 require_once( __DIR__ . '/inc/block-bindings.php' );
 require_once( __DIR__ . '/inc/block-config.php' );
+require_once( __DIR__ . '/inc/i18n.php' );
 require_once( __DIR__ . '/inc/rest-api.php' );
 
 // Block files
@@ -391,7 +392,8 @@ function get_tag_labels( $tags ) {
 }
 
 /**
- * This is a copy of get_theme_feature_list(), but with the wporg-themes text domain
+ * Get all possible features. This list mirrors core, but needs the local
+ * textdomain as the terms have been updated to be sentence-case.
  *
  * @param string $include Optional. Type of list: 'active', 'deprecated' or 'all'. Default 'active'.
  * @param string $subset  Optional. Returns only the selected subset of features.
