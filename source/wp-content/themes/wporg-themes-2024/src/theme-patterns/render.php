@@ -18,9 +18,7 @@ function get_pattern_preview_block( $pattern, $is_overflow = false ) {
 		'width' => 275,
 		// phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase -- Name comes from API.
 		'viewportWidth' => $pattern->viewportWidth ?? 1200,
-		// phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase -- Name comes from API.
-		'viewportHeight' => isset( $pattern->viewportWidth ) ? $pattern->viewportWidth * 0.75 : 900,
-		'fullPage' => false,
+		'fullPage' => true,
 		'isHidden' => $is_overflow,
 	);
 	return do_blocks( sprintf( '<!-- wp:wporg/screenshot-preview %s /-->', wp_json_encode( $args ) ) );
