@@ -48,7 +48,7 @@
 
 		<!-- wp:wporg/child-theme-notice /-->
 
-		<!-- wp:wporg/meta-list {"style":{"spacing":{"margin":{"top":"var:preset|spacing|30"}}}} /-->
+		<!-- wp:wporg/meta-list /-->
 
 	</div>
 	<!-- /wp:column -->
