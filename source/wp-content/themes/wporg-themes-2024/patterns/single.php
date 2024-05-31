@@ -99,8 +99,8 @@
 			<h2 class="wp-block-heading has-heading-4-font-size"><?php esc_html_e( 'Ratings', 'wporg-themes' ); ?></h2>
 			<!-- /wp:heading -->
 
-			<!-- wp:paragraph {"metadata":{"bindings":{"content":{"source":"wporg-themes/meta","args":{"key":"ratings-link"}}}}} -->
-			<p>See all</p>
+			<!-- wp:paragraph {"metadata":{"bindings":{"content":{"source":"wporg-themes/meta","args":{"key":"ratings-link"}}}},"className":"wporg-ratings-link"} -->
+			<p class="wporg-ratings-link">See all</p>
 			<!-- /wp:paragraph -->
 		</div>
 		<!-- /wp:group -->

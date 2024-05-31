@@ -12,7 +12,9 @@ $display_rating = round( $theme->rating / 10 ) * 0.5;
 ?>
 <div <?php echo get_block_wrapper_attributes(); // phpcs:ignore ?>>
 	<?php if ( ! $theme->rating ) : ?>
-	<div class="wporg-ratings-stars__label">
+	<!-- Hide the "See all…" link if there are no ratings. -->
+	<style>.wporg-ratings-link{display:none}</style>
+	<div class="wporg-ratings-stars__label-empty">
 		<?php esc_html_e( 'This theme has not been rated yet.', 'wporg-themes' ); ?>
 	</div>
 	<?php else : ?>
