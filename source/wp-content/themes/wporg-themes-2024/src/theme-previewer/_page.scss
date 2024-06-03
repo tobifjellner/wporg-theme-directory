@@ -47,10 +47,10 @@
 
 	.wp-block-wporg-screenshot-preview {
 		border-color: var(--wp--preset--color--white-opacity-15);
+		border-width: 1.5px;
 
 		&:where(.is-linked-image):hover {
 			border-color: var(--wp--preset--color--blueberry-2) !important;
-			border-width: 1.5px;
 		}
 
 		&:where(.is-linked-image):focus-within {
