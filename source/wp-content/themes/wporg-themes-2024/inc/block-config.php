@@ -316,6 +316,11 @@ function update_archive_title( $block_content, $block, $instance ) {
 		if ( $author ) {
 			// translators: %s Author name.
 			$title = sprintf( __( 'Author: %s', 'wporg-themes' ), $author->display_name );
+
+			// Unhide this block on author archives.
+			if ( isset( $block['attrs']['className'] ) ) {
+				$block['attrs']['className'] = str_replace( 'screen-reader-text', '', $block['attrs']['className'] );
+			}
 		} else if ( is_search() ) {
 			$title = __( 'Search results', 'wporg-themes' );
 		} else if ( ! empty( $tags ) ) {

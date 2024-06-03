@@ -69,6 +69,11 @@ body.page .wp-block-wporg-local-navigation-bar .wp-block-query-title {
 	display: none;
 }
 
+/* The query filter title is visible on author pages, so reducde the spacing above for balance. */
+body.author h1.wp-block-query-title {
+	margin-top: -30px !important;
+}
+
 /* Ensure download buttons take up the max space allowed. */
 .wporg-theme-actions > .wp-block-button {
 	flex-grow: 1;
