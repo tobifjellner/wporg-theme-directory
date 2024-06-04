@@ -37,11 +37,11 @@
 		<!-- wp:buttons {"layout":{"type":"flex"},"className":"wporg-theme-actions"} -->
 		<div class="wp-block-buttons wporg-theme-actions">
 			<!-- wp:button {"className":"is-style-outline","metadata":{"bindings":{"url":{"source":"wporg-themes/meta","args":{"key":"preview-url"}}}}} -->
-			<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button"><?php esc_html_e( 'Preview', 'wporg-themes' ); ?></a></div>
+			<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" id="wporg-theme-button-preview"><?php esc_html_e( 'Preview', 'wporg-themes' ); ?></a></div>
 			<!-- /wp:button -->
 
 			<!-- wp:button {"metadata":{"bindings":{"url":{"source":"wporg-themes/meta","args":{"key":"download-url"}}}}} -->
-			<div class="wp-block-button"><a class="wp-block-button__link wp-element-button"><?php esc_html_e( 'Download', 'wporg-themes' ); ?></a></div>
+			<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" id="wporg-theme-button-download"><?php esc_html_e( 'Download', 'wporg-themes' ); ?></a></div>
 			<!-- /wp:button -->
 		</div>
 		<!-- /wp:buttons -->

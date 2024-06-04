@@ -92,6 +92,14 @@ const { state } = store( 'wporg/themes/style-variations', {
 			event.preventDefault();
 			const { ref } = getElement();
 			state.selected = ref?.dataset.style;
+
+			// If the preview exists, update the URL to the selected variation.
+			const previewButton = document.getElementById( 'wporg-theme-button-preview' );
+			if ( previewButton ) {
+				const previewURL = new URL( previewButton.href );
+				previewURL.searchParams.set( 'style_variation', state.selected );
+				previewButton.href = previewURL;
+			}
 		},
 	},
 } );
