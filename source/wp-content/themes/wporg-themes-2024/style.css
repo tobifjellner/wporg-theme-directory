@@ -92,9 +92,22 @@ body.author h1.wp-block-query-title {
 	margin-left: calc(-1 * var(--wp--preset--spacing--edge-space));
 }
 
-/* Drop to a two column layout for grids. */
 @media (max-width: 1080px) {
+	/* Drop to a two column layout for grids. */
 	.wp-block-post-template.is-layout-grid.columns-3 {
 		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	/* Drop the screenshot/meta section to one-column. */
+	body.single-repopackage .wporg-theme-overview {
+		flex-direction: column;
+	}
+}
+
+@media (max-width: 781px) {
+	/* Update the screenshot/meta section to use `row` again
+	 * so the core block CSS applies correctly. */
+	body.single-repopackage .wporg-theme-overview {
+		flex-direction: row;
 	}
 }
