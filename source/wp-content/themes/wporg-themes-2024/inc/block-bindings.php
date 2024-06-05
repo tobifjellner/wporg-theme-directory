@@ -137,7 +137,7 @@ function get_meta_block_value( $args, $block ) {
 		case 'zip-name':
 			$filename = basename( $theme->download_link );
 			return esc_html( $filename );
-		case 'preview-back-url':
+		case 'theme-detail-url':
 			return get_permalink();
 		case 'preview-back-text':
 			return __( '← Back', 'wporg-themes' );
