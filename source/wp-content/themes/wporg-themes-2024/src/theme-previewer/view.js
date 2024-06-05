@@ -3,17 +3,24 @@
  */
 import { getContext, getElement, store } from '@wordpress/interactivity';
 
-store( 'wporg/themes/preview', {
+const { state } = store( 'wporg/themes/preview', {
 	state: {
 		get isLoaded() {
 			const context = getContext();
 			return context.isLoaded;
 		},
+		pages: 1,
 	},
 	actions: {
 		onLoad() {
 			const context = getContext();
 			context.isLoaded = true;
+		},
+		goBack( event ) {
+			if ( window.history.length > state.pages ) {
+				event.preventDefault();
+				window.history.go( state.pages * -1 );
+			}
 		},
 		navigateIframe( event ) {
 			event.preventDefault();
@@ -46,6 +53,7 @@ store( 'wporg/themes/preview', {
 
 				context.url = previewURL;
 				window.history.replaceState( {}, '', permalinkURL );
+				state.pages++;
 			}
 		},
 	},

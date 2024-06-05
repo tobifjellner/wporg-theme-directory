@@ -89,6 +89,16 @@ while ( $html->next_tag( [ 'class_name' => 'wp-block-wporg-screenshot-preview' ]
 
 $content = $html->get_updated_html();
 
+// Recreate the processor to grab the back button.
+// See https://developer.wordpress.org/reference/classes/wp_html_tag_processor/#finding-tags
+$html = new WP_HTML_Tag_Processor( $content );
+while ( $html->next_tag( [ 'class_name' => 'wporg-theme-preview__back' ] ) ) {
+	$html->next_tag( 'a' );
+	$html->set_attribute( 'data-wp-on--click', 'wporg/themes/preview::actions.goBack' );
+}
+
+$content = $html->get_updated_html();
+
 $markup = sprintf( $markup, $content, esc_url_raw( $url ) );
 
 ?>
