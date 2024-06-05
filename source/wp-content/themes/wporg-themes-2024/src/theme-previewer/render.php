@@ -75,6 +75,10 @@ while ( $html->next_tag( [ 'class_name' => 'wp-block-wporg-screenshot-preview' ]
 	if ( $preview_link ) {
 		$query = wp_parse_url( $preview_link, PHP_URL_QUERY );
 		$args = wp_parse_args( $query );
+		// If neither style or pattern is found, this is the default style variation.
+		if ( empty( $args ) ) {
+			$args['style_variation'] = 'default';
+		}
 		foreach ( $args as $key => $value ) {
 			$html->set_attribute( 'data-' . esc_attr( $key ), esc_attr( $value ) );
 		}
