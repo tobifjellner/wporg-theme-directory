@@ -107,19 +107,6 @@
 		<li><?php esc_html_e( 'Provide and keep us up-to-date with a contact email address in the event we need to reach you.', 'wporg-themes' ); ?></li>
 		<!-- /wp:list-item -->
 
-		<!-- wp:list-item -->
-		<li>
-			<?php
-			echo wp_kses_post(
-				sprintf(
-					// translators: %s: URL to Haiku page on wikipedia.
-					__( 'Provide a <a href="%s">haiku</a> (5-7-5) about yourself to be included.', 'wporg-themes' ),
-					__( 'https://en.wikipedia.org/wiki/Haiku_in_English', 'wporg-themes' )
-				)
-			);
-			?>
-			</li>
-		<!-- /wp:list-item -->
 	</ul>
 	<!-- /wp:list -->
 </div>
