@@ -5,37 +5,12 @@
 
 namespace WordPressdotorg\Theme\Theme_Directory_2024\I18N;
 
-use WP_Post;
-use function WordPressdotorg\Theme\Theme_Directory_2024\wporg_themes_get_feature_list;
-use const WordPressdotorg\Theme\Theme_Directory_2024\THEME_POST_TYPE;
+use function WordPressdotorg\Theme\Theme_Directory_2024\{get_theme_information, wporg_themes_get_feature_list};
 
 add_filter( 'the_content', __NAMESPACE__ . '\translate_the_content', 1 );
 add_filter( 'the_title', __NAMESPACE__ . '\translate_the_title', 1, 2 );
 add_filter( 'single_post_title', __NAMESPACE__ . '\translate_the_title', 1, 2 );
 add_filter( 'get_term', __NAMESPACE__ . '\translate_term' );
-
-/**
- * Get the current theme, given the global post.
- */
-function get_the_theme( $_post = false ) {
-	global $post;
-	if ( ! $_post ) {
-		$_post = $post;
-	}
-
-	$theme_post = get_post( $_post );
-	// Not a post, or not a theme post type.
-	if ( ! ( $theme_post instanceof WP_Post ) || THEME_POST_TYPE !== $theme_post->post_type ) {
-		return false;
-	}
-
-	$theme = wporg_themes_theme_information( $theme_post->post_name );
-	if ( isset( $theme->error ) ) {
-		return false;
-	}
-
-	return $theme;
-}
 
 /**
  * Replace the content with the theme description (possibly translated).
@@ -45,7 +20,7 @@ function translate_the_content( $content ) {
 		return $content;
 	}
 
-	$theme = get_the_theme();
+	$theme = get_theme_information();
 	if ( isset( $theme->description ) ) {
 		return $theme->description;
 	}
@@ -66,7 +41,7 @@ function translate_the_title( $title, $post_id = null ) {
 		return $title;
 	}
 
-	$theme = get_the_theme( $post_id );
+	$theme = get_theme_information( $post_id );
 	if ( isset( $theme->name ) ) {
 		return $theme->name;
 	}

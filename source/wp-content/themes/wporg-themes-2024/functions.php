@@ -352,6 +352,33 @@ function get_support_url( $path ) {
 }
 
 /**
+ * Get the theme object, either from a given post or the current post object.
+ *
+ * @param int|WP_Post|null $_post Optional. Post ID or post object.
+ *
+ * @return object|false Theme object, false if not a theme.
+ */
+function get_theme_information( $_post = false ) {
+	global $post;
+	if ( ! $_post ) {
+		$_post = $post;
+	}
+
+	$theme_post = get_post( $_post );
+	// Not a post, or not a theme post type.
+	if ( ! ( $theme_post instanceof \WP_Post ) || THEME_POST_TYPE !== $theme_post->post_type ) {
+		return false;
+	}
+
+	$theme = wporg_themes_theme_information( $theme_post->post_name );
+	if ( isset( $theme->error ) ) {
+		return false;
+	}
+
+	return $theme;
+}
+
+/**
  * Get the selected tags from the current query.
  *
  * @return array
