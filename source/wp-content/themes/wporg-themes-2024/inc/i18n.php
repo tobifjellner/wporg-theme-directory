@@ -7,6 +7,7 @@ namespace WordPressdotorg\Theme\Theme_Directory_2024\I18N;
 
 use WP_Post;
 use function WordPressdotorg\Theme\Theme_Directory_2024\wporg_themes_get_feature_list;
+use const WordPressdotorg\Theme\Theme_Directory_2024\THEME_POST_TYPE;
 
 add_filter( 'the_content', __NAMESPACE__ . '\translate_the_content', 1 );
 add_filter( 'the_title', __NAMESPACE__ . '\translate_the_title', 1, 2 );
@@ -24,7 +25,7 @@ function get_the_theme( $_post = false ) {
 
 	$theme_post = get_post( $_post );
 	// Not a post, or not a theme post type.
-	if ( ! ( $theme_post instanceof WP_Post ) || 'repopackage' !== $theme_post->post_type ) {
+	if ( ! ( $theme_post instanceof WP_Post ) || THEME_POST_TYPE !== $theme_post->post_type ) {
 		return false;
 	}
 

@@ -2,6 +2,8 @@
 
 namespace WordPressdotorg\Theme\Theme_Directory_2024\Embed;
 
+use const WordPressdotorg\Theme\Theme_Directory_2024\THEME_POST_TYPE;
+
 /**
  * Actions and filters.
  */
@@ -37,7 +39,7 @@ function enqueue_embed_styles() {
  * @return bool
  */
 function enable_embed_thumbnail() {
-	return is_singular( 'repopackage' );
+	return is_singular( THEME_POST_TYPE );
 }
 
 /**
@@ -66,7 +68,7 @@ function update_thumbnail_image_shape( $shape ) {
  */
 function update_embed_thumbnail( $html, $attachment_id, $size, $icon, $attr ) {
 	global $post;
-	if ( is_embed() && is_singular( 'repopackage' ) ) {
+	if ( is_embed() && is_singular( THEME_POST_TYPE ) ) {
 		$theme = new \WPORG_Themes_Repo_Package( $post );
 		$src   = add_query_arg(
 			array(

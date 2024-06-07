@@ -2,6 +2,8 @@
 
 namespace WordPressdotorg\Theme\Theme_Directory_2024;
 
+const THEME_POST_TYPE = 'repopackage';
+
 require_once( __DIR__ . '/inc/block-bindings.php' );
 require_once( __DIR__ . '/inc/block-config.php' );
 require_once( __DIR__ . '/inc/embed.php' );
@@ -119,7 +121,7 @@ function enqueue_assets() {
  */
 function post_thumbnail_html( $html, $post_id, $post_thumbnail_id, $size, $attr ) {
 	$current_post = get_post( $post_id );
-	if ( 'repopackage' == $current_post->post_type ) {
+	if ( THEME_POST_TYPE == $current_post->post_type ) {
 		$theme = new \WPORG_Themes_Repo_Package( $current_post );
 		$src   = add_query_arg(
 			array(
