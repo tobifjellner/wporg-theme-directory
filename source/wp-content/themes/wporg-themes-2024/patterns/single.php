@@ -32,7 +32,7 @@
 
 	<!-- wp:column {"width":"30%"} -->
 	<div class="wp-block-column" style="flex-basis:30%">
-		<!-- wp:wporg/business-model-notice /-->
+		<!-- wp:wporg/business-model-notice {"fontSize":"small","style":{"spacing":{"blockGap":"var:preset|spacing|10"}}} /-->
 
 		<!-- wp:buttons {"layout":{"type":"flex"},"className":"wporg-theme-actions"} -->
 		<div class="wp-block-buttons wporg-theme-actions">
