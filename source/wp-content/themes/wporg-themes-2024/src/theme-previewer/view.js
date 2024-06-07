@@ -9,7 +9,7 @@ const { state } = store( 'wporg/themes/preview', {
 			const context = getContext();
 			return context.isLoaded;
 		},
-		pages: 1,
+		initialHistory: window.history.length,
 	},
 	actions: {
 		onLoad() {
@@ -17,9 +17,9 @@ const { state } = store( 'wporg/themes/preview', {
 			context.isLoaded = true;
 		},
 		goBack( event ) {
-			if ( window.history.length > state.pages ) {
+			if ( state.initialHistory > 2 ) {
 				event.preventDefault();
-				window.history.go( state.pages * -1 );
+				window.history.go( state.initialHistory - window.history.length - 1 );
 			}
 		},
 		navigateIframe( event ) {
@@ -53,7 +53,6 @@ const { state } = store( 'wporg/themes/preview', {
 
 				context.url = previewURL;
 				window.history.replaceState( {}, '', permalinkURL );
-				state.pages++;
 			}
 		},
 	},
