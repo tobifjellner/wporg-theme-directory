@@ -83,15 +83,6 @@ body.author h1.wp-block-query-title {
 	width: 100%;
 }
 
-/*
- * Support nested full-width containers. This can be removed once we update to
- * Gutenberg 18.2+ and get https://github.com/WordPress/gutenberg/pull/60716.
- */
-:where(main > .alignfull > .alignfull) {
-	margin-right: calc(-1 * var(--wp--preset--spacing--edge-space));
-	margin-left: calc(-1 * var(--wp--preset--spacing--edge-space));
-}
-
 @media (max-width: 1080px) {
 	/* Drop to a two column layout for grids. */
 	.wp-block-post-template.is-layout-grid.columns-3 {
