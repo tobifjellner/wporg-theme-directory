@@ -19,8 +19,8 @@ if ( ! $count ) {
 }
 
 $label = sprintf(
-	/* translators: Heading for style variations, %s is the number of styles. */
-	_n( 'Style variations (%s)', 'Style variations (%s)', $count, 'wporg-themes' ),
+	/* translators: Heading for style variations, %d is the number of styles. */
+	__( 'Style variations (%d)', 'wporg-themes' ),
 	$count
 );
 
