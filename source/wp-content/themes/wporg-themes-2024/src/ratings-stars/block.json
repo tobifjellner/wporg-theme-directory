@@ -6,7 +6,7 @@
 	"title": "Ratings (stars)",
 	"category": "design",
 	"icon": "",
-	"description": "The avgerage rating of this theme displayed as stars.",
+	"description": "The average rating of this theme displayed as stars.",
 	"textdomain": "wporg",
 	"supports": {
 		"html": false
