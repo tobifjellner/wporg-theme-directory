@@ -30,15 +30,15 @@ function update_query_total_label( $label, $found_posts ) {
 	global $wp_query;
 	$current_browse = $wp_query->query['browse'] ?? false;
 	if ( 'commercial' === $current_browse ) {
-		/* translators: %s: the result count. */
-		return _n( '%s commercial theme', '%s commercial themes', $found_posts, 'wporg-themes' );
+		/* translators: %d: the result count. */
+		return _n( '%d commercial theme', '%d commercial themes', $found_posts, 'wporg-themes' );
 	} else if ( 'community' === $current_browse ) {
-		/* translators: %s: the result count. */
-		return _n( '%s community theme', '%s community themes', $found_posts, 'wporg-themes' );
+		/* translators: %d: the result count. */
+		return _n( '%d community theme', '%d community themes', $found_posts, 'wporg-themes' );
 	}
 
-	/* translators: %s: the result count. */
-	return _n( '%s theme', '%s themes', $found_posts, 'wporg-themes' );
+	/* translators: %d: the result count. */
+	return _n( '%d theme', '%d themes', $found_posts, 'wporg-themes' );
 }
 
 /**
