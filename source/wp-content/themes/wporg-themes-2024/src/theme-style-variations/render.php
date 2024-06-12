@@ -19,9 +19,9 @@ if ( ! $count ) {
 }
 
 $label = sprintf(
-	/* translators: Heading for style variations, %d is the number of styles. */
-	__( 'Style variations (%d)', 'wporg-themes' ),
-	$count
+	/* translators: Heading for style variations, %s is the number of styles. */
+	__( 'Style variations (%s)', 'wporg-themes' ),
+	number_format_i18n( $count )
 );
 
 // Initial state to pass to Interactivity API.
